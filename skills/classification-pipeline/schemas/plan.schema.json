@@ -1,0 +1,344 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/NIQIXINNN/IN6227-assignment/schemas/plan.schema.json",
+  "title": "Classification plan",
+  "description": "The decisions an agent makes for one dataset. Execution belongs to driver.py, so this file carries choices from fixed menus and the prose that justifies them - never code. scripts/plan.py is what actually enforces the contract; this file exists so an editor can complete the fields and so tests/test_plan.py can pin the two together. If they ever disagree, plan.py is right.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "dataset", "seed", "target", "cleaning", "models",
+    "validation", "tuning", "primary_metric", "report", "narrative"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "description": "Bumped when the contract changes in a way that breaks an old plan."
+    },
+    "dataset": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Path to the labelled training file."
+    },
+    "test_dataset": {
+      "type": ["string", "null"],
+      "description": "A separate labelled test file, held out untouched. Null splits a test set off `dataset` instead, using validation.test_size."
+    },
+    "seed": {
+      "type": "integer",
+      "description": "One seed for every split and every model. Fixed configuration, never tuned."
+    },
+
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["column", "reason", "alternatives_considered"],
+      "properties": {
+        "column": {"type": "string", "minLength": 1},
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Which evidence decided it - the cardinality, the name convention, or the user's answer."
+        },
+        "alternatives_considered": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        }
+      },
+      "description": "Step 1."
+    },
+
+    "cleaning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "drop_columns", "drop_rows_with_missing_label", "rarest_class_action",
+        "outlier_policy", "reason", "alternatives_considered"
+      ],
+      "properties": {
+        "drop_columns": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "description": "Entity keys, timestamps and identifier-like columns to exclude from the features - or [] when nothing is excluded. May not contain the target."
+        },
+        "drop_rows_with_missing_label": {
+          "type": "boolean",
+          "description": "A missing label cannot be imputed and cannot be scored, so this is an explicit answer rather than a default."
+        },
+        "rarest_class_action": {
+          "enum": ["keep", "drop_duplicated_rows"]
+        },
+        "outlier_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["method"],
+          "properties": {
+            "method": {"enum": ["keep", "iqr"]},
+            "factor": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "maximum": 10,
+              "description": "IQR multiplier. Required when method is 'iqr'."
+            },
+            "columns": {
+              "type": "array",
+              "items": {"type": "string", "minLength": 1},
+              "description": "Which numeric columns the rule applies to. Omit for all of them."
+            }
+          },
+          "description": "Keep every row, or filter on an IQR fence."
+        },
+        "reason": {"type": "string", "minLength": 1},
+        "alternatives_considered": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        }
+      },
+      "description": "Step 3. Bounded on purpose: every action is from a menu the driver can execute. A free-form expression here would reopen the hole this design closes."
+    },
+
+    "models": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "Step 4 and Step 5. Exactly two, and they must be different families - two of one family differ only in hyperparameters, so the comparison says nothing about inductive bias.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["family", "scale", "scale_reason", "stopping",
+                     "overfitting_control", "grid", "reason",
+                     "alternatives_considered"],
+        "properties": {
+          "family": {
+            "type": "string",
+            "minLength": 1,
+            "description": "A name from models.model_names()."
+          },
+          "scale": {
+            "type": "boolean",
+            "description": "Per model, not global: whether this family needs scaled inputs is a property of the estimator, and the report is graded on the difference."
+          },
+          "scale_reason": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Why this value. The registry states a strength of preference - 'not required', 'generally recommended', 'effectively required' - and the report is graded on telling those apart, so a bare boolean is not enough."
+          },
+          "stopping": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The report's 'Stopping criterion' cell: max_iter/tol and whether the cap was reached; the tree-growth limit; early stopping and what it monitored; or 'none - no iterative fit'. Never invent one you did not set."
+          },
+          "overfitting_control": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The report's 'Overfitting control' cell: max_depth, min_samples_leaf, pruning, or the regularisation that limits capacity. Name the mechanism actually in force, including the default you left alone."
+          },
+          "grid": {
+            "type": "object",
+            "minProperties": 1,
+            "description": "Hyperparameter name -> the values to try. Keys are bare parameter names, checked against this family's own get_params(); driver.py adds the `clf__` prefix that build_pipeline requires.",
+            "additionalProperties": {
+              "type": "array",
+              "minItems": 1
+            }
+          },
+          "reason": {"type": "string", "minLength": 1},
+          "alternatives_considered": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["unit", "strategy", "test_size", "val_fraction", "reason",
+                   "alternatives_considered"],
+      "properties": {
+        "unit": {"enum": ["row", "entity", "time"]},
+        "strategy": {
+          "enum": ["holdout", "stratified_kfold", "grouped_holdout",
+                   "stratified_group_kfold", "temporal"],
+          "description": "Must match `unit`: row -> holdout|stratified_kfold, entity -> grouped_holdout|stratified_group_kfold, time -> temporal. The wrong pairing is silent."
+        },
+        "test_size": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 1,
+          "description": "Fraction held out as the test set when no test_dataset is given."
+        },
+        "val_fraction": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 1,
+          "description": "Fraction of the remaining pool used to validate. A lever, not a constant."
+        },
+        "n_splits": {
+          "type": ["integer", "null"],
+          "minimum": 2,
+          "description": "Required by the fold strategies, and capped by fold_cap(). Null for holdouts."
+        },
+        "gap": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Required by 'temporal': rows skipped between train and test. Null otherwise."
+        },
+        "group_column": {
+          "type": ["string", "null"],
+          "description": "Required by the group strategies; the driver excludes it from the feature set automatically. Null otherwise."
+        },
+        "time_column": {
+          "type": ["string", "null"],
+          "description": "Required by 'temporal'. Null otherwise."
+        },
+        "reason": {"type": "string", "minLength": 1},
+        "alternatives_considered": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        }
+      },
+      "description": "Step 6."
+    },
+
+    "tuning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["metric", "final_fit_scope", "final_fit_reason",
+                   "reason", "alternatives_considered"],
+      "properties": {
+        "metric": {
+          "enum": ["f1_macro", "accuracy"],
+          "description": "What the search optimises. Deliberately a narrower menu than primary_metric.name, because the scorer implements only these two - so the plan carries both fields and the reason explains any divergence."
+        },
+        "final_fit_scope": {"enum": ["train", "train+validation", "pool"]},
+        "final_fit_reason": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Why that scope. 'pool' in particular means the test estimate is no longer untouched by selection, which the report has to say."
+        },
+        "reason": {"type": "string", "minLength": 1},
+        "alternatives_considered": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        }
+      },
+      "description": "Step 6."
+    },
+
+    "primary_metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "reason", "rejected", "rejected_reason"],
+      "properties": {
+        "name": {
+          "enum": ["accuracy", "f1_macro", "precision_macro", "recall_macro",
+                   "roc_auc", "pr_auc"]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The four inputs that decided it: the task objective, the class distribution, the cost of each error type, and whether the validation design can estimate it stably."
+        },
+        "rejected": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The metric you did not lead with. Must differ from `name` - rejecting the metric you chose reads as a decision that was never made."
+        },
+        "rejected_reason": {"type": "string", "minLength": 1}
+      },
+      "description": "Step 7."
+    },
+
+    "report": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["student_id", "student_name", "variant", "model_version", "harness",
+                   "repository", "dataset_label"],
+      "properties": {
+        "student_id": {"type": "string", "minLength": 1},
+        "student_name": {"type": "string", "minLength": 1},
+        "variant": {"type": "string", "minLength": 1},
+        "model_version": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The exact identifier you are being served as. Never copy an example; if you cannot determine it, ask."
+        },
+        "harness": {
+          "type": "string",
+          "minLength": 1,
+          "description": "API, ChatUI, or 'Agent Harness such as <name> <version>'."
+        },
+        "repository": {
+          "type": "string",
+          "pattern": "^https?://",
+          "description": "The GitHub link to this skill, as given by the user."
+        },
+        "dataset_label": {"type": "string", "minLength": 1}
+      },
+      "description": "Step 8 - the identity block drawn as the report header."
+    },
+
+    "narrative": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_models", "feature_engineering", "cleaning_why",
+        "validation_argument", "primary_metric_argument", "performance_comparison",
+        "limitations"
+      ],
+      "properties": {
+        "candidate_models": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Every family considered with the number that put it in the running, each rejection and the number that killed it, and why the two survivors differ in inductive bias."
+        },
+        "feature_engineering": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Encoding, scaling, derived features, dropped columns - one line of rationale each, or why nothing was needed."
+        },
+        "cleaning_why": {
+          "type": "array",
+          "minItems": 1,
+          "description": "The report's cleaning table, one row per issue.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["issue", "action", "why"],
+            "properties": {
+              "issue": {"type": "string", "minLength": 1},
+              "action": {"type": "string", "minLength": 1},
+              "why": {"type": "string", "minLength": 1}
+            }
+          }
+        },
+        "validation_argument": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Chosen because ... - the structure evidence that fixed the unit, then the arithmetic: rare rows per estimate, and what one flipped row moves."
+        },
+        "primary_metric_argument": {
+          "type": "string",
+          "minLength": 1
+        },
+        "performance_comparison": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The gap between the two models, the spread, and what the gap is worth against the spread."
+        },
+        "limitations": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Bias-variance reading, any violated assumption, and what you would change."
+        }
+      },
+      "description": "The report's argument. Spliced in verbatim, so the report can never disagree with the run that produced it."
+    }
+  }
+}
