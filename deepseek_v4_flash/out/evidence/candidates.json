@@ -1,0 +1,170 @@
+{
+  "candidates": [
+    {
+      "column": "geological_era",
+      "dtype": "object",
+      "n_unique": 5,
+      "n_missing": 2,
+      "unique_per_row": 0.0002,
+      "name_matches_target_convention": false,
+      "plausible_class": true,
+      "looks_like_id": false
+    },
+    {
+      "column": "weather_pattern",
+      "dtype": "object",
+      "n_unique": 7,
+      "n_missing": 3,
+      "unique_per_row": 0.0002,
+      "name_matches_target_convention": false,
+      "plausible_class": true,
+      "looks_like_id": false
+    },
+    {
+      "column": "region",
+      "dtype": "object",
+      "n_unique": 21,
+      "n_missing": 4,
+      "unique_per_row": 0.0007,
+      "name_matches_target_convention": false,
+      "plausible_class": true,
+      "looks_like_id": false
+    },
+    {
+      "column": "aptitude_score",
+      "dtype": "float64",
+      "n_unique": 15148,
+      "n_missing": 4,
+      "unique_per_row": 0.4869,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "performance_score",
+      "dtype": "float64",
+      "n_unique": 24418,
+      "n_missing": 2,
+      "unique_per_row": 0.7848,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "stability_index",
+      "dtype": "float64",
+      "n_unique": 3788,
+      "n_missing": 2,
+      "unique_per_row": 0.1218,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "personal_interest",
+      "dtype": "object",
+      "n_unique": 11,
+      "n_missing": 6,
+      "unique_per_row": 0.0004,
+      "name_matches_target_convention": false,
+      "plausible_class": true,
+      "looks_like_id": false
+    },
+    {
+      "column": "load_ratio",
+      "dtype": "float64",
+      "n_unique": 18799,
+      "n_missing": 2,
+      "unique_per_row": 0.6042,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "brew_preference",
+      "dtype": "object",
+      "n_unique": 2,
+      "n_missing": 7,
+      "unique_per_row": 0.0001,
+      "name_matches_target_convention": false,
+      "plausible_class": true,
+      "looks_like_id": false
+    },
+    {
+      "column": "instrument",
+      "dtype": "object",
+      "n_unique": 6,
+      "n_missing": 3,
+      "unique_per_row": 0.0002,
+      "name_matches_target_convention": false,
+      "plausible_class": true,
+      "looks_like_id": false
+    },
+    {
+      "column": "species",
+      "dtype": "object",
+      "n_unique": 7,
+      "n_missing": 3,
+      "unique_per_row": 0.0002,
+      "name_matches_target_convention": false,
+      "plausible_class": true,
+      "looks_like_id": false
+    },
+    {
+      "column": "index_weight",
+      "dtype": "float64",
+      "n_unique": 3595,
+      "n_missing": 3,
+      "unique_per_row": 0.1156,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "mineral_type",
+      "dtype": "object",
+      "n_unique": 16,
+      "n_missing": 3,
+      "unique_per_row": 0.0005,
+      "name_matches_target_convention": false,
+      "plausible_class": true,
+      "looks_like_id": false
+    },
+    {
+      "column": "activity_duration",
+      "dtype": "float64",
+      "n_unique": 9657,
+      "n_missing": 2,
+      "unique_per_row": 0.3104,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "composite_rank",
+      "dtype": "float64",
+      "n_unique": 4213,
+      "n_missing": 1,
+      "unique_per_row": 0.1354,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "label",
+      "dtype": "object",
+      "n_unique": 2,
+      "n_missing": 3,
+      "unique_per_row": 0.0001,
+      "name_matches_target_convention": true,
+      "plausible_class": true,
+      "looks_like_id": false
+    }
+  ],
+  "note": "every column that could plausibly be the target, with the numbers behind it. Not a pick - choosing is yours, and if two candidates are close, ask the user.",
+  "_evidence": {
+    "type": "candidates",
+    "schema_version": 1,
+    "producer": "label_candidates"
+  }
+}

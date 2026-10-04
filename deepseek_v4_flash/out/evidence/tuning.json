@@ -1,0 +1,79 @@
+{
+  "metric": "f1_macro",
+  "protocol": "a 20% holdout of the pool (6,222 of 31,109 rows), scored on f1_macro",
+  "final_fit_scope": "pool",
+  "final_fit_rows": 31109,
+  "models": {
+    "gradient_boosting": {
+      "family": "gradient_boosting",
+      "best_params": {
+        "clf__n_estimators": 300,
+        "clf__learning_rate": 0.1,
+        "clf__max_depth": 3
+      },
+      "grid": {
+        "n_estimators": [
+          100,
+          300
+        ],
+        "learning_rate": [
+          0.05,
+          0.1
+        ],
+        "max_depth": [
+          2,
+          3
+        ]
+      },
+      "best_score": 0.7539127745128364,
+      "n_combinations": 8,
+      "scores": {
+        "clf__n_estimators=100|clf__learning_rate=0.05|clf__max_depth=2": 0.730952,
+        "clf__n_estimators=100|clf__learning_rate=0.05|clf__max_depth=3": 0.742995,
+        "clf__n_estimators=100|clf__learning_rate=0.1|clf__max_depth=2": 0.740222,
+        "clf__n_estimators=100|clf__learning_rate=0.1|clf__max_depth=3": 0.750235,
+        "clf__n_estimators=300|clf__learning_rate=0.05|clf__max_depth=2": 0.74524,
+        "clf__n_estimators=300|clf__learning_rate=0.05|clf__max_depth=3": 0.748938,
+        "clf__n_estimators=300|clf__learning_rate=0.1|clf__max_depth=2": 0.752261,
+        "clf__n_estimators=300|clf__learning_rate=0.1|clf__max_depth=3": 0.753913
+      },
+      "metric": "f1_macro",
+      "scale": false
+    },
+    "logistic_regression": {
+      "family": "logistic_regression",
+      "best_params": {
+        "clf__C": 1.0,
+        "clf__class_weight": null
+      },
+      "grid": {
+        "C": [
+          0.1,
+          1.0,
+          10.0
+        ],
+        "class_weight": [
+          null,
+          "balanced"
+        ]
+      },
+      "best_score": 0.7563243452968893,
+      "n_combinations": 6,
+      "scores": {
+        "clf__C=0.1|clf__class_weight=None": 0.753627,
+        "clf__C=0.1|clf__class_weight='balanced'": 0.750372,
+        "clf__C=1.0|clf__class_weight=None": 0.756324,
+        "clf__C=1.0|clf__class_weight='balanced'": 0.752176,
+        "clf__C=10.0|clf__class_weight=None": 0.755648,
+        "clf__C=10.0|clf__class_weight='balanced'": 0.751496
+      },
+      "metric": "f1_macro",
+      "scale": true
+    }
+  },
+  "_evidence": {
+    "type": "tuning",
+    "schema_version": 1,
+    "producer": "driver"
+  }
+}

@@ -1,0 +1,346 @@
+{
+  "n_rows": 31112,
+  "feature_columns_searched": [
+    "aptitude_score",
+    "performance_score",
+    "stability_index",
+    "load_ratio",
+    "index_weight",
+    "activity_duration",
+    "composite_rank",
+    "geological_era",
+    "weather_pattern",
+    "region",
+    "personal_interest",
+    "brew_preference",
+    "instrument",
+    "species",
+    "mineral_type"
+  ],
+  "group_candidates": [
+    {
+      "column": "mineral_type",
+      "n_unique": 16,
+      "rows_per_value_mean": 1944.5,
+      "rows_per_value_median": 740.0,
+      "rows_per_value_max": 10077,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "Marble",
+        "Opal",
+        "Diamond"
+      ],
+      "same_value_share_nearest_neighbour": 0.344,
+      "chance_baseline_share": 0.066015,
+      "lift_over_chance": 5.21,
+      "lift_withheld_because": null,
+      "rows_searched": 4320,
+      "rows_whose_neighbour_shares_the_value": 1486.1,
+      "search_note": "frame has 31,112 rows, above the 5,000-row search limit; searched 4,320 rows sampled by value (whole values, at most 294 rows each) so the repeat structure survives. The share and the baseline both describe this sample, not the frame."
+    },
+    {
+      "column": "instrument",
+      "n_unique": 6,
+      "rows_per_value_mean": 5185.33,
+      "rows_per_value_median": 4008.0,
+      "rows_per_value_max": 12573,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "Dulcimer",
+        "Cello",
+        "Oboe"
+      ],
+      "same_value_share_nearest_neighbour": 0.529,
+      "chance_baseline_share": 0.166239,
+      "lift_over_chance": 3.18,
+      "lift_withheld_because": null,
+      "rows_searched": 4287,
+      "rows_whose_neighbour_shares_the_value": 2267.8,
+      "search_note": "frame has 31,112 rows, above the 5,000-row search limit; searched 4,287 rows sampled by value (whole values, at most 714 rows each) so the repeat structure survives. The share and the baseline both describe this sample, not the frame."
+    },
+    {
+      "column": "region",
+      "n_unique": 21,
+      "rows_per_value_mean": 1481.52,
+      "rows_per_value_median": 82.0,
+      "rows_per_value_max": 27915,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "Texas",
+        "Other",
+        "Arizona"
+      ],
+      "same_value_share_nearest_neighbour": 0.1866,
+      "chance_baseline_share": 0.060961,
+      "lift_over_chance": 3.06,
+      "lift_withheld_because": null,
+      "rows_searched": 2412,
+      "rows_whose_neighbour_shares_the_value": 450.1,
+      "search_note": "frame has 31,112 rows, above the 5,000-row search limit; searched 2,412 rows sampled by value (whole values, at most 227 rows each) so the repeat structure survives. The share and the baseline both describe this sample, not the frame."
+    },
+    {
+      "column": "personal_interest",
+      "n_unique": 11,
+      "rows_per_value_mean": 2828.36,
+      "rows_per_value_median": 3154.0,
+      "rows_per_value_max": 3965,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "Foraging",
+        "Falconry",
+        "Astronomy"
+      ],
+      "same_value_share_nearest_neighbour": 0.2591,
+      "chance_baseline_share": 0.090474,
+      "lift_over_chance": 2.86,
+      "lift_withheld_because": null,
+      "rows_searched": 4582,
+      "rows_whose_neighbour_shares_the_value": 1187.2,
+      "search_note": "frame has 31,112 rows, above the 5,000-row search limit; searched 4,582 rows sampled by value (whole values, at most 416 rows each) so the repeat structure survives. The share and the baseline both describe this sample, not the frame."
+    },
+    {
+      "column": "weather_pattern",
+      "n_unique": 7,
+      "rows_per_value_mean": 4444.57,
+      "rows_per_value_median": 987.0,
+      "rows_per_value_max": 14274,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "Heatwave",
+        "Monsoon",
+        "Blizzard"
+      ],
+      "same_value_share_nearest_neighbour": 0.4561,
+      "chance_baseline_share": 0.167176,
+      "lift_over_chance": 2.73,
+      "lift_withheld_because": null,
+      "rows_searched": 3556,
+      "rows_whose_neighbour_shares_the_value": 1621.9,
+      "search_note": "frame has 31,112 rows, above the 5,000-row search limit; searched 3,556 rows sampled by value (whole values, at most 625 rows each) so the repeat structure survives. The share and the baseline both describe this sample, not the frame."
+    },
+    {
+      "column": "species",
+      "n_unique": 7,
+      "rows_per_value_mean": 4444.57,
+      "rows_per_value_median": 1760.0,
+      "rows_per_value_max": 21723,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "Lynx",
+        "Bison",
+        "Viper"
+      ],
+      "same_value_share_nearest_neighbour": 0.3529,
+      "chance_baseline_share": 0.142466,
+      "lift_over_chance": 2.48,
+      "lift_withheld_because": null,
+      "rows_searched": 4378,
+      "rows_whose_neighbour_shares_the_value": 1545.0,
+      "search_note": "frame has 31,112 rows, above the 5,000-row search limit; searched 4,378 rows sampled by value (whole values, at most 625 rows each) so the repeat structure survives. The share and the baseline both describe this sample, not the frame."
+    },
+    {
+      "column": "geological_era",
+      "n_unique": 5,
+      "rows_per_value_mean": 6222.4,
+      "rows_per_value_median": 984.0,
+      "rows_per_value_max": 26642,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "Triassic",
+        "Jurassic",
+        "Devonian"
+      ],
+      "same_value_share_nearest_neighbour": 0.4048,
+      "chance_baseline_share": 0.239742,
+      "lift_over_chance": 1.69,
+      "lift_withheld_because": null,
+      "rows_searched": 3051,
+      "rows_whose_neighbour_shares_the_value": 1235.0,
+      "search_note": "frame has 31,112 rows, above the 5,000-row search limit; searched 3,051 rows sampled by value (whole values, at most 833 rows each) so the repeat structure survives. The share and the baseline both describe this sample, not the frame."
+    },
+    {
+      "column": "brew_preference",
+      "n_unique": 2,
+      "rows_per_value_mean": 15556.0,
+      "rows_per_value_median": 15552.5,
+      "rows_per_value_max": 20777,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "Espresso",
+        "Latte"
+      ],
+      "same_value_share_nearest_neighbour": 0.7712,
+      "chance_baseline_share": 0.49776,
+      "lift_over_chance": 1.55,
+      "lift_withheld_because": null,
+      "rows_searched": 3339,
+      "rows_whose_neighbour_shares_the_value": 2575.0,
+      "search_note": "frame has 31,112 rows, above the 5,000-row search limit; searched 3,339 rows sampled by value (whole values, at most 1666 rows each) so the repeat structure survives. The share and the baseline both describe this sample, not the frame."
+    },
+    {
+      "column": "aptitude_score",
+      "n_unique": 15148,
+      "rows_per_value_mean": 2.05,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 35,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "325.58",
+        "333.63",
+        "503.96"
+      ],
+      "same_value_share_nearest_neighbour": 0.0006,
+      "chance_baseline_share": 0.000127,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only about 3 of the 5,000 rows searched have a same-value nearest neighbour at all, so the ratio is noise rather than a measurement. Either the values are nearly all distinct - a continuous measurement rather than a grouping - or the rows sharing a value are simply not close to each other.",
+      "rows_searched": 5000,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": "frame has 31,112 rows, above the 5,000-row search limit; searched 5,000 rows sampled by value (whole values, at most 2 rows each) so the repeat structure survives. The share and the baseline both describe this sample, not the frame."
+    },
+    {
+      "column": "performance_score",
+      "n_unique": 24418,
+      "rows_per_value_mean": 1.27,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 265,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "34.95",
+        "256.5",
+        "385.0"
+      ],
+      "same_value_share_nearest_neighbour": 0.0012,
+      "chance_baseline_share": 7.1e-05,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1.27 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 5000,
+      "rows_whose_neighbour_shares_the_value": 6.0,
+      "search_note": "frame has 31,112 rows, above the 5,000-row search limit; searched 5,000 rows sampled by value (whole values, at most 2 rows each) so the repeat structure survives. The share and the baseline both describe this sample, not the frame."
+    },
+    {
+      "column": "stability_index",
+      "n_unique": 3788,
+      "rows_per_value_mean": 8.21,
+      "rows_per_value_median": 6.0,
+      "rows_per_value_max": 265,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "1.503",
+        "3.283",
+        "3.676"
+      ],
+      "same_value_share_nearest_neighbour": 0.0,
+      "chance_baseline_share": 0.000182,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only about 0 of the 5,000 rows searched have a same-value nearest neighbour at all, so the ratio is noise rather than a measurement. Either the values are nearly all distinct - a continuous measurement rather than a grouping - or the rows sharing a value are simply not close to each other.",
+      "rows_searched": 5000,
+      "rows_whose_neighbour_shares_the_value": 0.0,
+      "search_note": "frame has 31,112 rows, above the 5,000-row search limit; searched 5,000 rows sampled by value (whole values, at most 2 rows each) so the repeat structure survives. The share and the baseline both describe this sample, not the frame."
+    },
+    {
+      "column": "load_ratio",
+      "n_unique": 18799,
+      "rows_per_value_mean": 1.65,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 38,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "23.878",
+        "28.617",
+        "22.582"
+      ],
+      "same_value_share_nearest_neighbour": 0.0004,
+      "chance_baseline_share": 0.000111,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1.65 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 5000,
+      "rows_whose_neighbour_shares_the_value": 2.0,
+      "search_note": "frame has 31,112 rows, above the 5,000-row search limit; searched 5,000 rows sampled by value (whole values, at most 2 rows each) so the repeat structure survives. The share and the baseline both describe this sample, not the frame."
+    },
+    {
+      "column": "index_weight",
+      "n_unique": 3595,
+      "rows_per_value_mean": 8.65,
+      "rows_per_value_median": 7.0,
+      "rows_per_value_max": 37,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "8.63",
+        "14.22",
+        "11.04"
+      ],
+      "same_value_share_nearest_neighbour": 0.0004,
+      "chance_baseline_share": 0.000181,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only about 2 of the 5,000 rows searched have a same-value nearest neighbour at all, so the ratio is noise rather than a measurement. Either the values are nearly all distinct - a continuous measurement rather than a grouping - or the rows sharing a value are simply not close to each other.",
+      "rows_searched": 5000,
+      "rows_whose_neighbour_shares_the_value": 2.0,
+      "search_note": "frame has 31,112 rows, above the 5,000-row search limit; searched 5,000 rows sampled by value (whole values, at most 2 rows each) so the repeat structure survives. The share and the baseline both describe this sample, not the frame."
+    },
+    {
+      "column": "activity_duration",
+      "n_unique": 9657,
+      "rows_per_value_mean": 3.22,
+      "rows_per_value_median": 2.0,
+      "rows_per_value_max": 38,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "77.98",
+        "95.76",
+        "114.03"
+      ],
+      "same_value_share_nearest_neighbour": 0.0,
+      "chance_baseline_share": 0.000147,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only about 0 of the 5,001 rows searched have a same-value nearest neighbour at all, so the ratio is noise rather than a measurement. Either the values are nearly all distinct - a continuous measurement rather than a grouping - or the rows sharing a value are simply not close to each other.",
+      "rows_searched": 5001,
+      "rows_whose_neighbour_shares_the_value": 0.0,
+      "search_note": "frame has 31,112 rows, above the 5,000-row search limit; searched 5,001 rows sampled by value (whole values, at most 2 rows each) so the repeat structure survives. The share and the baseline both describe this sample, not the frame."
+    },
+    {
+      "column": "composite_rank",
+      "n_unique": 4213,
+      "rows_per_value_mean": 7.38,
+      "rows_per_value_median": 7.0,
+      "rows_per_value_max": 27,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "2.093",
+        "3.028",
+        "4.564"
+      ],
+      "same_value_share_nearest_neighbour": 0.002,
+      "chance_baseline_share": 0.000184,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only about 10 of the 5,000 rows searched have a same-value nearest neighbour at all, so the ratio is noise rather than a measurement. Either the values are nearly all distinct - a continuous measurement rather than a grouping - or the rows sharing a value are simply not close to each other.",
+      "rows_searched": 5000,
+      "rows_whose_neighbour_shares_the_value": 10.0,
+      "search_note": "frame has 31,112 rows, above the 5,000-row search limit; searched 5,000 rows sampled by value (whole values, at most 2 rows each) so the repeat structure survives. The share and the baseline both describe this sample, not the frame."
+    }
+  ],
+  "time_candidates": [],
+  "dropped_id_like_reviewed": [],
+  "columns_not_examined": [],
+  "how_to_read_this": "A high lift_over_chance means rows sharing this column's value resemble each other in the OTHER columns - true of a real entity key and also of a strong ordinary predictor. Read rows_per_value_mean alongside it: a column with only a row or two per value measures as a huge lift for arithmetic reasons, so its lift is withheld and lift_withheld_because says why. A handful of repeats per value is what a plausible entity key looks like. If a column IS an entity key it must not enter numeric/categorical: pass it as groups= to the splitter instead. Nothing here is a verdict - decide and say which evidence decided it.",
+  "note": "evidence, not a verdict - whether the rows are independent is a judgement made in SKILL.md Step 3 and recorded in the report",
+  "_evidence": {
+    "type": "structure",
+    "schema_version": 1,
+    "producer": "structure_evidence"
+  }
+}

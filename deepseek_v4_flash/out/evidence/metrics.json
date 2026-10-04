@@ -1,0 +1,96 @@
+{
+  "gradient_boosting": {
+    "_evidence": {
+      "type": "evaluation",
+      "schema_version": 1,
+      "producer": "evaluate"
+    },
+    "model": "gradient_boosting",
+    "classes": [
+      "no",
+      "yes"
+    ],
+    "n_scored": 13333,
+    "accuracy": 0.8396459911497788,
+    "precision_macro": 0.7850915711199902,
+    "recall_macro": 0.7503441634743897,
+    "f1_macro": 0.7648674053270148,
+    "f1_weighted": 0.8344545532192716,
+    "roc_auc": 0.8903618389999354,
+    "roc_auc_averaging": "binary",
+    "roc_auc_note": null,
+    "pr_auc": 0.7022235653212001,
+    "pr_auc_note": null,
+    "confusion_matrix": [
+      [
+        9357,
+        808
+      ],
+      [
+        1330,
+        1838
+      ]
+    ],
+    "per_class": {
+      "no": {
+        "support": 10165,
+        "recall": 0.9205,
+        "precision": 0.8755,
+        "false_negatives": 808
+      },
+      "yes": {
+        "support": 3168,
+        "recall": 0.5802,
+        "precision": 0.6946,
+        "false_negatives": 1330
+      }
+    }
+  },
+  "logistic_regression": {
+    "_evidence": {
+      "type": "evaluation",
+      "schema_version": 1,
+      "producer": "evaluate"
+    },
+    "model": "logistic_regression",
+    "classes": [
+      "no",
+      "yes"
+    ],
+    "n_scored": 13333,
+    "accuracy": 0.8391209780244506,
+    "precision_macro": 0.785357593537517,
+    "recall_macro": 0.7466320081036633,
+    "f1_macro": 0.7624711435713205,
+    "f1_weighted": 0.8332816653126133,
+    "roc_auc": 0.8887470996238827,
+    "roc_auc_averaging": "binary",
+    "roc_auc_note": null,
+    "pr_auc": 0.7022876293560952,
+    "pr_auc_note": null,
+    "confusion_matrix": [
+      [
+        9381,
+        784
+      ],
+      [
+        1361,
+        1807
+      ]
+    ],
+    "per_class": {
+      "no": {
+        "support": 10165,
+        "recall": 0.9229,
+        "precision": 0.8733,
+        "false_negatives": 784
+      },
+      "yes": {
+        "support": 3168,
+        "recall": 0.5704,
+        "precision": 0.6974,
+        "false_negatives": 1361
+      }
+    }
+  }
+}

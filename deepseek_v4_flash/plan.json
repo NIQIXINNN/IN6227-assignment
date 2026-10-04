@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "dataset": "C:/Users/86180/Desktop/IN6227/dataset/train.csv",
+  "test_dataset": "C:/Users/86180/Desktop/IN6227/dataset/test.csv",
+  "seed": 42,
+  "target": {
+    "column": "label",
+    "reason": "Only column whose name matches the target convention (name_matches_target_convention true) and it is discrete with 2 values; the other low-cardinality categoricals (brew_preference, geological_era, instrument, species, region) are named like features and the numeric columns have thousands of distinct values, so they are measures rather than classes.",
+    "alternatives_considered": [
+      "brew_preference - 2 classes but a named feature (Espresso/Latte), not a task label",
+      "geological_era / weather_pattern / instrument / species / region - low-cardinality categorical predictors, not labels",
+      "aptitude_score / performance_score - near-continuous measures (15,148 and 24,418 distinct values)"
+    ]
+  },
+  "cleaning": {
+    "drop_columns": [],
+    "drop_rows_with_missing_label": true,
+    "rarest_class_action": "keep",
+    "outlier_policy": {"method": "keep"},
+    "reason": "No column is an identifier or timestamp: structure.json examined all 15 features and the closest grouping candidate (mineral_type, 1,944.5 rows/value, lift 5.2) is itself a model feature, so grouping on it would cut folds through the signal. 3 rows have no label and are dropped (a missing label can be neither imputed nor scored). Missing feature values are sparse (50 cells, 0.02%) and look at random, so the pipeline's per-fold median/mode imputation is enough. The rare class 'yes' is a real, well-supported class (7,464 rows, no duplicates, no contradictions, lift 2.34), so it is kept. Numeric extremes are kept: they are plausible measurements and not the rare-class signal, so an IQR fence would only delete data.",
+    "alternatives_considered": [
+      "drop_columns for mineral_type/region as entity keys - rejected: is_in_feature_set is true for every candidate, so they are predictors, not entities",
+      "IQR outlier filtering - rejected: removes genuine measurements on a mild 3.17:1 imbalance, where the minority rows are the ones most likely to be extreme",
+      "drop_duplicated_rows for the rare class - rejected: effective_unique_rows equals n_rows (no duplication) and contradicted_rows is 0"
+    ]
+  },
+  "models": [
+    {
+      "family": "gradient_boosting",
+      "scale": false,
+      "scale_reason": "not required - trees split on order, so the units cannot move a split",
+      "stopping": "n_estimators (100-300) and learning_rate caps; no early stopping",
+      "overfitting_control": "max_depth 2-3 and a low learning rate",
+      "grid": {
+        "n_estimators": [100, 300],
+        "learning_rate": [0.05, 0.1],
+        "max_depth": [2, 3]
+      },
+      "reason": "Top of the f1_macro shortlist (screen mean 0.7665 +/- 0.0053) and a natural fit for a 31k-row, 82-wide tabular frame; boosting fits small staircases to residuals, which reaches the smooth, low-order boundary this mix of 7 numeric and 8 one-hot columns suggests. Grid was kept to 8 combinations because the axis is expensive and each unit of n_estimators re-grows the whole ensemble.",
+      "alternatives_considered": [
+        "random_forest - shortlisted on shape but shares gradient_boosting's axis-aligned bias, so the pair would reach one boundary shape twice",
+        "svm - below the f1_macro floor (0.7587); also costs more than linearly in rows",
+        "decision_tree / knn / naive_bayes - clearly behind on the screen"
+      ]
+    },
+    {
+      "family": "logistic_regression",
+      "scale": true,
+      "scale_reason": "generally recommended and close to required - one shared L2 penalty, so unscaled units dominate the coefficients and slow the solver",
+      "stopping": "solver max_iter=2000, tol 1e-4; cap not reached",
+      "overfitting_control": "L2 penalty; C searched over 0.1-10",
+      "grid": {
+        "C": [0.1, 1.0, 10.0],
+        "class_weight": [null, "balanced"]
+      },
+      "reason": "Second on the f1_macro screen (0.7649 +/- 0.0054) and the only linear-in-the-log-odds family in the registry, so the comparison against the tree boundary is maximally informative. One-hot encoding gives each category its own signed coefficient, which is readable. C spans two orders of magnitude around the default; class_weight is searched because the label is 3.17:1 and rebalancing may or may not help once the metric already weights classes equally.",
+      "alternatives_considered": [
+        "svm - within the accuracy shortlist but below on macro-F1 and more expensive on rows; a kernel boundary is less interpretable here",
+        "knn - scaling-dependent and weaker (0.7469); 82 one-hot columns dilute its distance",
+        "naive_bayes - weakest family (0.6631) and its per-column-independence assumption is violated by correlated one-hot columns"
+      ]
+    }
+  ],
+  "validation": {
+    "unit": "row",
+    "strategy": "holdout",
+    "test_size": 0.2,
+    "val_fraction": 0.2,
+    "n_splits": null,
+    "gap": null,
+    "group_column": null,
+    "time_column": null,
+    "reason": "structure.json gives no evidence of repeated entities or time ordering: every grouping candidate is a model feature (is_in_feature_set true) and there are no time candidates, so rows are independent and a stratified split is correct. The rare class holds 7,464 of 31,109 rows, so a 20% holdout validates about 1,493 'yes' rows - a single flipped rare row moves recall by ~0.07%, so one estimate is already stable and k-fold would multiply fitting cost for little gain. test_size is unused because a labelled test file was supplied.",
+    "alternatives_considered": [
+      "stratified_kfold (5-fold) - rejected: the rare class is well populated, so the extra stability does not justify 5x the fitting time",
+      "grouped_holdout on mineral_type - rejected: it is a predictor (is_in_feature_set true), and grouping on it cuts folds through the signal",
+      "temporal - rejected: no time column exists"
+    ]
+  },
+  "tuning": {
+    "metric": "f1_macro",
+    "final_fit_scope": "pool",
+    "final_fit_reason": "Under a holdout the validation block was used only to select hyperparameters, so refitting on the whole non-test pool (train + validation, 31,109 rows) is the standard choice; the external test file stays untouched by selection, and no label is discarded from the final fit.",
+    "reason": "The search optimises the same metric the report leads with, f1_macro, so selection and reporting share one ruler; on a 3.17:1 label accuracy would reward the majority and this is a case where both classes carry equal weight.",
+    "alternatives_considered": [
+      "accuracy as the tuning metric - rejected: dominated by the 76% majority class",
+      "final_fit_scope 'train' - rejected: throws away the validation rows for no reason under a holdout",
+      "final_fit_scope 'train+validation' - equivalent to 'pool' here; 'pool' names the intent (everything but the test) directly"
+    ]
+  },
+  "primary_metric": {
+    "name": "f1_macro",
+    "reason": "The task is a binary label with no stated asymmetry between a false positive and a false negative, so both classes matter equally; the classes are imbalanced 3.17:1 (23,645 'no' vs 7,464 'yes'), so a metric that weights the majority would flatter a model that ignores 'yes'. Macro-F1 averages recall and precision over both classes equally, it is the metric the search optimised, and the ~1,493 rare rows in the validation block make it stable to estimate.",
+    "rejected": "accuracy",
+    "rejected_reason": "At a 76% majority floor accuracy stays high even when the minority is missed."
+  },
+  "report": {
+    "student_id": "G2606362G",
+    "student_name": "NI QIXIN",
+    "variant": "Variant-2",
+    "model_version": "deepseek/deepseek-flash",
+    "harness": "Agent Harness such as opencode 1.18.34",
+    "repository": "https://github.com/NIQIXINNN/IN6227-assignment",
+    "dataset_label": "IN6227 Variant-2 - train.csv (31,112 rows) / test.csv (13,334 rows)"
+  },
+  "narrative": {
+    "candidate_models": "All seven families were fitted with defaults on one 3-fold screen of 15,000 pool rows. On macro-F1 gradient_boosting led (0.7665 +/- 0.0053) and logistic_regression was within one standard deviation (0.7649 +/- 0.0054); svm (0.7587), random_forest (0.7572), knn (0.7469), decision_tree (0.6956) and naive_bayes (0.6631) fell below the floor. Nothing errored or was excluded. The pair differs in inductive bias - an axis-aligned staircase fitted to residuals versus the registry's only linear log-odds boundary, the sharpest contrast available. random_forest was passed over because it shares gradient_boosting's axis-aligned bias. These are defaults-only screening numbers, not the report's scores.",
+    "feature_engineering": "Nothing constructed. The 7 numeric columns are used as-is; the 8 categorical columns are one-hot encoded inside the pipeline (width 82). No identifier or timestamp column exists, so cleaning.drop_columns is empty.",
+    "cleaning_why": [
+      {
+        "issue": "3 rows have no label",
+        "action": "dropped",
+        "why": "a missing label cannot be imputed or scored (3 rows dropped)"
+      },
+      {
+        "issue": "50 missing feature cells (worst brew_preference, 7)",
+        "action": "per-fold median/mode imputation",
+        "why": "<0.02% and at random; per-fold imputation avoids a leak"
+      },
+      {
+        "issue": "Skewed / extreme numeric values",
+        "action": "kept - no IQR fence",
+        "why": "plausible values, not the rare-class signal; filtering deletes data"
+      },
+      {
+        "issue": "Rarest class 'yes' (7,464 rows)",
+        "action": "kept",
+        "why": "meaningful, no duplicates or contradictions, locality lift 2.34"
+      },
+      {
+        "issue": "15 entity/time candidates",
+        "action": "none dropped; rows independent",
+        "why": "all are model features and no time column exists"
+      }
+    ],
+    "validation_argument": "structure.json found no entity or time structure: the closest grouping candidate, mineral_type (1,944.5 rows/value, lift 5.2), is itself a feature, so rows sharing it resemble each other because the value predicts the label, not because they are one entity; no time columns exist. Rows are independent and the split is stratified. With 7,464 rare rows a 20% holdout validates ~1,493 'yes' rows, so one flipped row moves recall ~0.07%; k-fold would add cost for little gain.",
+    "primary_metric_argument": "Both classes matter equally (no stated asymmetry in error cost) and the split is 3.17:1, so a majority-weighted metric would flatter a model that ignores 'yes', while recall alone would be one-sided. Macro-F1 weights both classes equally, matches the metric the search optimised, and the ~1,493 rare rows behind the holdout make it stable to estimate. Accuracy is rejected: at a 76% majority floor it stays high while the minority is missed, so it is reported only as a secondary check.",
+    "performance_comparison": "On the identical 13,333-row test the two were near-identical: gradient_boosting 0.7649 macro-F1 vs logistic_regression 0.7625, a 0.0024 gap below the ~0.005 screen standard deviation. Both had the same minority behaviour ('yes' recall ~0.58 vs 'no' ~0.92), so tuning on macro-F1 did not remove the majority's pull; the linear model matching the boosted tree suggests a nearly linear boundary.",
+    "limitations": "No feature engineering was applied, so the near-tie suggests interactions add little here. One holdout gives a single estimate, so hyperparameters could shift with the seed (fixed at 42); and with no group or time structure found, the estimate assumes the test file is i.i.d. from the same population."
+  }
+}
