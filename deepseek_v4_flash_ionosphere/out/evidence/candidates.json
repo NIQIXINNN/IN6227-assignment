@@ -1,0 +1,360 @@
+{
+  "candidates": [
+    {
+      "column": "attr_0",
+      "dtype": "int64",
+      "n_unique": 2,
+      "n_missing": 0,
+      "unique_per_row": 0.0057,
+      "name_matches_target_convention": false,
+      "plausible_class": true,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_1",
+      "dtype": "int64",
+      "n_unique": 1,
+      "n_missing": 0,
+      "unique_per_row": 0.0028,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_2",
+      "dtype": "float64",
+      "n_unique": 219,
+      "n_missing": 0,
+      "unique_per_row": 0.6239,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_3",
+      "dtype": "float64",
+      "n_unique": 269,
+      "n_missing": 0,
+      "unique_per_row": 0.7664,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_4",
+      "dtype": "float64",
+      "n_unique": 204,
+      "n_missing": 0,
+      "unique_per_row": 0.5812,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_5",
+      "dtype": "float64",
+      "n_unique": 259,
+      "n_missing": 0,
+      "unique_per_row": 0.7379,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_6",
+      "dtype": "float64",
+      "n_unique": 231,
+      "n_missing": 0,
+      "unique_per_row": 0.6581,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_7",
+      "dtype": "float64",
+      "n_unique": 260,
+      "n_missing": 0,
+      "unique_per_row": 0.7407,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_8",
+      "dtype": "float64",
+      "n_unique": 244,
+      "n_missing": 0,
+      "unique_per_row": 0.6952,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_9",
+      "dtype": "float64",
+      "n_unique": 267,
+      "n_missing": 0,
+      "unique_per_row": 0.7607,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_10",
+      "dtype": "float64",
+      "n_unique": 246,
+      "n_missing": 0,
+      "unique_per_row": 0.7009,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_11",
+      "dtype": "float64",
+      "n_unique": 269,
+      "n_missing": 0,
+      "unique_per_row": 0.7664,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_12",
+      "dtype": "float64",
+      "n_unique": 238,
+      "n_missing": 0,
+      "unique_per_row": 0.6781,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_13",
+      "dtype": "float64",
+      "n_unique": 266,
+      "n_missing": 0,
+      "unique_per_row": 0.7578,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_14",
+      "dtype": "float64",
+      "n_unique": 234,
+      "n_missing": 0,
+      "unique_per_row": 0.6667,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_15",
+      "dtype": "float64",
+      "n_unique": 270,
+      "n_missing": 0,
+      "unique_per_row": 0.7692,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_16",
+      "dtype": "float64",
+      "n_unique": 254,
+      "n_missing": 0,
+      "unique_per_row": 0.7236,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_17",
+      "dtype": "float64",
+      "n_unique": 280,
+      "n_missing": 0,
+      "unique_per_row": 0.7977,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_18",
+      "dtype": "float64",
+      "n_unique": 254,
+      "n_missing": 0,
+      "unique_per_row": 0.7236,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_19",
+      "dtype": "float64",
+      "n_unique": 266,
+      "n_missing": 0,
+      "unique_per_row": 0.7578,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_20",
+      "dtype": "float64",
+      "n_unique": 248,
+      "n_missing": 0,
+      "unique_per_row": 0.7066,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_21",
+      "dtype": "float64",
+      "n_unique": 265,
+      "n_missing": 0,
+      "unique_per_row": 0.755,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_22",
+      "dtype": "float64",
+      "n_unique": 248,
+      "n_missing": 0,
+      "unique_per_row": 0.7066,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_23",
+      "dtype": "float64",
+      "n_unique": 264,
+      "n_missing": 0,
+      "unique_per_row": 0.7521,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_24",
+      "dtype": "float64",
+      "n_unique": 256,
+      "n_missing": 0,
+      "unique_per_row": 0.7293,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_25",
+      "dtype": "float64",
+      "n_unique": 273,
+      "n_missing": 0,
+      "unique_per_row": 0.7778,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_26",
+      "dtype": "float64",
+      "n_unique": 256,
+      "n_missing": 0,
+      "unique_per_row": 0.7293,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_27",
+      "dtype": "float64",
+      "n_unique": 281,
+      "n_missing": 0,
+      "unique_per_row": 0.8006,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_28",
+      "dtype": "float64",
+      "n_unique": 244,
+      "n_missing": 0,
+      "unique_per_row": 0.6952,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_29",
+      "dtype": "float64",
+      "n_unique": 266,
+      "n_missing": 0,
+      "unique_per_row": 0.7578,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_30",
+      "dtype": "float64",
+      "n_unique": 243,
+      "n_missing": 0,
+      "unique_per_row": 0.6923,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_31",
+      "dtype": "float64",
+      "n_unique": 263,
+      "n_missing": 0,
+      "unique_per_row": 0.7493,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_32",
+      "dtype": "float64",
+      "n_unique": 245,
+      "n_missing": 0,
+      "unique_per_row": 0.698,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "attr_33",
+      "dtype": "float64",
+      "n_unique": 263,
+      "n_missing": 0,
+      "unique_per_row": 0.7493,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "class",
+      "dtype": "object",
+      "n_unique": 2,
+      "n_missing": 0,
+      "unique_per_row": 0.0057,
+      "name_matches_target_convention": true,
+      "plausible_class": true,
+      "looks_like_id": false
+    }
+  ],
+  "note": "every column that could plausibly be the target, with the numbers behind it. Not a pick - choosing is yours, and if two candidates are close, ask the user.",
+  "_evidence": {
+    "type": "candidates",
+    "schema_version": 1,
+    "producer": "label_candidates"
+  }
+}

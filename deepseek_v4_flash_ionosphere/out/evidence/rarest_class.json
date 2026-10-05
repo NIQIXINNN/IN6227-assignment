@@ -1,0 +1,20 @@
+{
+  "rarest_class": "b",
+  "n_rows": 126,
+  "share_of_rows": 0.358974,
+  "looks_like_placeholder_name": false,
+  "note": "evidence, not a verdict - deciding whether to model, merge or drop this class is a judgement and belongs in the report",
+  "duplicate_rows_within_class": 1,
+  "effective_unique_rows": 125,
+  "contradicted_rows": 0,
+  "neighbour_same_class_share": 0.6746,
+  "chance_baseline": 0.357143,
+  "lift_over_chance": 1.89,
+  "neighbour_search_note": null,
+  "skipped_neighbour_search": null,
+  "_evidence": {
+    "type": "rarest_class",
+    "schema_version": 1,
+    "producer": "rarest_class_evidence"
+  }
+}

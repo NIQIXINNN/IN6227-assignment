@@ -1,0 +1,77 @@
+{
+  "metric": "f1_macro",
+  "protocol": "3-fold cross-validation over the 855 pool rows, scored on f1_macro",
+  "final_fit_scope": "pool",
+  "final_fit_rows": 855,
+  "models": {
+    "logistic_regression": {
+      "family": "logistic_regression",
+      "best_params": {
+        "clf__C": 10.0,
+        "clf__class_weight": null
+      },
+      "grid": {
+        "C": [
+          0.1,
+          1.0,
+          10.0
+        ],
+        "class_weight": [
+          null,
+          "balanced"
+        ]
+      },
+      "best_score": 0.5592376970711613,
+      "n_combinations": 6,
+      "scores": {
+        "clf__C=0.1|clf__class_weight=None": 0.522383,
+        "clf__C=0.1|clf__class_weight='balanced'": 0.517196,
+        "clf__C=1.0|clf__class_weight=None": 0.543193,
+        "clf__C=1.0|clf__class_weight='balanced'": 0.543593,
+        "clf__C=10.0|clf__class_weight=None": 0.559238,
+        "clf__C=10.0|clf__class_weight='balanced'": 0.554126
+      },
+      "metric": "f1_macro",
+      "scale": true
+    },
+    "svm": {
+      "family": "svm",
+      "best_params": {
+        "clf__C": 10.0,
+        "clf__gamma": 0.001
+      },
+      "grid": {
+        "C": [
+          0.1,
+          1.0,
+          10.0
+        ],
+        "gamma": [
+          "scale",
+          0.001,
+          0.01
+        ]
+      },
+      "best_score": 0.5738203136530243,
+      "n_combinations": 9,
+      "scores": {
+        "clf__C=0.1|clf__gamma='scale'": 0.25928,
+        "clf__C=0.1|clf__gamma=0.001": 0.140119,
+        "clf__C=0.1|clf__gamma=0.01": 0.2685,
+        "clf__C=1.0|clf__gamma='scale'": 0.527833,
+        "clf__C=1.0|clf__gamma=0.001": 0.440934,
+        "clf__C=1.0|clf__gamma=0.01": 0.555135,
+        "clf__C=10.0|clf__gamma='scale'": 0.535138,
+        "clf__C=10.0|clf__gamma=0.001": 0.57382,
+        "clf__C=10.0|clf__gamma=0.01": 0.561551
+      },
+      "metric": "f1_macro",
+      "scale": true
+    }
+  },
+  "_evidence": {
+    "type": "tuning",
+    "schema_version": 1,
+    "producer": "driver"
+  }
+}

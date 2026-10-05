@@ -1,0 +1,158 @@
+{
+  "class_names": [
+    "b",
+    "g"
+  ],
+  "split": {
+    "mode": "folds",
+    "test_source": "split from dataset",
+    "test_split": "stratified by class",
+    "n_pool": 280,
+    "n_train": 280,
+    "n_val": 0,
+    "n_test": 71,
+    "test_size": 0.2,
+    "val_fraction": 0.2,
+    "seed": 42,
+    "val_class_counts": {}
+  },
+  "final_fit_rows": 280,
+  "kfold_reference_used_for_the_comparison": 5,
+  "validation_report": {
+    "selection_metric": "macro-F1",
+    "why_the_metric_decides_this": "selection is on macro-F1, where every class contributes 1/n_classes of the score however small it is, so the smallest class - not the row count - sets the noise floor of the estimate being selected on",
+    "pool_rows": 280,
+    "n_classes": 2,
+    "class_counts": {
+      "b": 101,
+      "g": 179
+    },
+    "rarest_class": "b",
+    "rarest_count_in_pool": 101,
+    "holdout": {
+      "val_fraction_of_pool": 0.2,
+      "val_rows": 56,
+      "rarest_rows_per_estimate": 20.2,
+      "rows_per_class_per_estimate": {
+        "b": 20.2,
+        "g": 35.8
+      },
+      "one_row_share_of_rarest_recall": 0.0495,
+      "estimates": 1,
+      "final_fit_rows": 224,
+      "cost": "1x fitting; the validation rows are never trained on",
+      "val_size_sensitivity": [
+        {
+          "val_fraction_of_pool": 0.1,
+          "rarest_rows_per_estimate": 10.1,
+          "one_row_share_of_rarest_recall": 0.099
+        },
+        {
+          "val_fraction_of_pool": 0.2,
+          "rarest_rows_per_estimate": 20.2,
+          "one_row_share_of_rarest_recall": 0.0495
+        },
+        {
+          "val_fraction_of_pool": 0.3,
+          "rarest_rows_per_estimate": 30.3,
+          "one_row_share_of_rarest_recall": 0.033
+        },
+        {
+          "val_fraction_of_pool": 0.4,
+          "rarest_rows_per_estimate": 40.4,
+          "one_row_share_of_rarest_recall": 0.0248
+        }
+      ]
+    },
+    "kfold": {
+      "folds": 5,
+      "val_rows_per_fold": 56,
+      "rarest_rows_per_estimate": 20.2,
+      "rows_per_class_per_estimate": {
+        "b": 20.2,
+        "g": 35.8
+      },
+      "one_row_share_of_rarest_recall": 0.0495,
+      "estimates": 5,
+      "final_fit_rows": 280,
+      "cost": "5x fitting; every row is validated against exactly once, so the score is the mean of 5 estimates rather than a single one, and the final model still trains on all 280 rows"
+    },
+    "note": "these are consequences, not a recommendation - the choice is made in SKILL.md Step 6 and must be justified in the report from these numbers"
+  },
+  "fold_consequences": {
+    "splitter": "StratifiedKFold(n_splits=5, random_state=42, shuffle=True)",
+    "n_rows": 280,
+    "n_folds": 5,
+    "n_classes": 2,
+    "classes": [
+      "0",
+      "1"
+    ],
+    "folds": [
+      {
+        "fold": 0,
+        "n_train": 224,
+        "n_val": 56,
+        "train_first_row": 0,
+        "val_first_row": 1,
+        "classes_absent_from_train": [],
+        "classes_absent_from_val": [],
+        "groups_shared_between_train_and_val": null,
+        "rarest_class_rows_in_val": 20
+      },
+      {
+        "fold": 1,
+        "n_train": 224,
+        "n_val": 56,
+        "train_first_row": 0,
+        "val_first_row": 2,
+        "classes_absent_from_train": [],
+        "classes_absent_from_val": [],
+        "groups_shared_between_train_and_val": null,
+        "rarest_class_rows_in_val": 20
+      },
+      {
+        "fold": 2,
+        "n_train": 224,
+        "n_val": 56,
+        "train_first_row": 1,
+        "val_first_row": 0,
+        "classes_absent_from_train": [],
+        "classes_absent_from_val": [],
+        "groups_shared_between_train_and_val": null,
+        "rarest_class_rows_in_val": 20
+      },
+      {
+        "fold": 3,
+        "n_train": 224,
+        "n_val": 56,
+        "train_first_row": 0,
+        "val_first_row": 3,
+        "classes_absent_from_train": [],
+        "classes_absent_from_val": [],
+        "groups_shared_between_train_and_val": null,
+        "rarest_class_rows_in_val": 20
+      },
+      {
+        "fold": 4,
+        "n_train": 224,
+        "n_val": 56,
+        "train_first_row": 0,
+        "val_first_row": 15,
+        "classes_absent_from_train": [],
+        "classes_absent_from_val": [],
+        "groups_shared_between_train_and_val": null,
+        "rarest_class_rows_in_val": 21
+      }
+    ],
+    "any_class_absent_from_val": false,
+    "any_class_absent_from_train": false,
+    "max_groups_shared_between_train_and_val": null,
+    "note": "a class absent from a fold is not scored as zero - macro averaging runs over the classes it can see, so the fold scores HIGHER than one that contains it. Read any_class_absent_from_val as 'this fold's score is not comparable to its siblings'"
+  },
+  "_evidence": {
+    "type": "validation",
+    "schema_version": 1,
+    "producer": "driver"
+  }
+}

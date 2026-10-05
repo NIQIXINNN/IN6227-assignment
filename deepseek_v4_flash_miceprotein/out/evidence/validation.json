@@ -1,0 +1,188 @@
+{
+  "class_names": [
+    "c-CS-m",
+    "c-CS-s",
+    "c-SC-m",
+    "c-SC-s",
+    "t-CS-m",
+    "t-CS-s",
+    "t-SC-m",
+    "t-SC-s"
+  ],
+  "split": {
+    "mode": "folds",
+    "test_source": "split from dataset",
+    "test_split": "held out by whole entity, so no entity is on both sides",
+    "n_pool": 855,
+    "n_train": 855,
+    "n_val": 0,
+    "n_test": 225,
+    "test_size": 0.2,
+    "val_fraction": 0.2,
+    "seed": 42,
+    "val_class_counts": {}
+  },
+  "final_fit_rows": 855,
+  "kfold_reference_used_for_the_comparison": 3,
+  "validation_report": {
+    "selection_metric": "macro-F1",
+    "why_the_metric_decides_this": "selection is on macro-F1, where every class contributes 1/n_classes of the score however small it is, so the smallest class - not the row count - sets the noise floor of the estimate being selected on",
+    "pool_rows": 855,
+    "n_classes": 8,
+    "class_counts": {
+      "c-CS-m": 90,
+      "c-CS-s": 120,
+      "c-SC-m": 105,
+      "c-SC-s": 120,
+      "t-CS-m": 120,
+      "t-CS-s": 75,
+      "t-SC-m": 120,
+      "t-SC-s": 105
+    },
+    "rarest_class": "t-CS-s",
+    "rarest_count_in_pool": 75,
+    "holdout": {
+      "val_fraction_of_pool": 0.2,
+      "val_rows": 171,
+      "rarest_rows_per_estimate": 15.0,
+      "rows_per_class_per_estimate": {
+        "c-CS-m": 18.0,
+        "c-CS-s": 24.0,
+        "c-SC-m": 21.0,
+        "c-SC-s": 24.0,
+        "t-CS-m": 24.0,
+        "t-CS-s": 15.0,
+        "t-SC-m": 24.0,
+        "t-SC-s": 21.0
+      },
+      "one_row_share_of_rarest_recall": 0.0667,
+      "estimates": 1,
+      "final_fit_rows": 684,
+      "cost": "1x fitting; the validation rows are never trained on",
+      "val_size_sensitivity": [
+        {
+          "val_fraction_of_pool": 0.1,
+          "rarest_rows_per_estimate": 7.5,
+          "one_row_share_of_rarest_recall": 0.1333
+        },
+        {
+          "val_fraction_of_pool": 0.2,
+          "rarest_rows_per_estimate": 15.0,
+          "one_row_share_of_rarest_recall": 0.0667
+        },
+        {
+          "val_fraction_of_pool": 0.3,
+          "rarest_rows_per_estimate": 22.5,
+          "one_row_share_of_rarest_recall": 0.0444
+        },
+        {
+          "val_fraction_of_pool": 0.4,
+          "rarest_rows_per_estimate": 30.0,
+          "one_row_share_of_rarest_recall": 0.0333
+        }
+      ]
+    },
+    "kfold": {
+      "folds": 3,
+      "val_rows_per_fold": 285,
+      "rarest_rows_per_estimate": 25.0,
+      "rows_per_class_per_estimate": {
+        "c-CS-m": 30.0,
+        "c-CS-s": 40.0,
+        "c-SC-m": 35.0,
+        "c-SC-s": 40.0,
+        "t-CS-m": 40.0,
+        "t-CS-s": 25.0,
+        "t-SC-m": 40.0,
+        "t-SC-s": 35.0
+      },
+      "one_row_share_of_rarest_recall": 0.04,
+      "estimates": 3,
+      "final_fit_rows": 855,
+      "cost": "3x fitting; every row is validated against exactly once, so the score is the mean of 3 estimates rather than a single one, and the final model still trains on all 855 rows"
+    },
+    "note": "these are consequences, not a recommendation - the choice is made in SKILL.md Step 6 and must be justified in the report from these numbers",
+    "groups": {
+      "unit_of_splitting": "entity",
+      "n_groups": 57,
+      "rows_per_group_mean": 15.0,
+      "rows_per_group_median": 15.0,
+      "rows_per_group_max": 15,
+      "rarest_class": "t-CS-s",
+      "rarest_rows_in_pool": 75,
+      "rarest_entities_in_pool": 5,
+      "rare_rows_in_the_largest_single_entity": 15,
+      "holdout": {
+        "entities_per_estimate": 1.0,
+        "one_entity_share_of_rarest_recall": 1.0
+      },
+      "kfold": {
+        "folds": 3,
+        "entities_per_estimate": 1.7,
+        "one_entity_share_of_rarest_recall": 0.6
+      },
+      "why_this_is_worse_than_the_row_arithmetic": "with rows as the unit one flipped row moves 't-CS-s' recall by 0.0133; with entities as the unit one entity moves it by up to 0.2, because every rare row that entity owns travels with it. The estimate is coarser than the row count suggests, and the count to decide on is the 5 entities, not the 75 rows",
+      "note": "consequences, not a recommendation - entity structure is decided in SKILL.md Step 3 and the strategy in Step 6"
+    }
+  },
+  "fold_consequences": {
+    "splitter": "stratified_group_folds(n_splits=3, seed=42)",
+    "n_rows": 855,
+    "n_folds": 3,
+    "n_classes": 8,
+    "classes": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "folds": [
+      {
+        "fold": 0,
+        "n_train": 570,
+        "n_val": 285,
+        "train_first_row": 0,
+        "val_first_row": 15,
+        "classes_absent_from_train": [],
+        "classes_absent_from_val": [],
+        "groups_shared_between_train_and_val": 0,
+        "rarest_class_rows_in_val": 15
+      },
+      {
+        "fold": 1,
+        "n_train": 570,
+        "n_val": 285,
+        "train_first_row": 0,
+        "val_first_row": 30,
+        "classes_absent_from_train": [],
+        "classes_absent_from_val": [],
+        "groups_shared_between_train_and_val": 0,
+        "rarest_class_rows_in_val": 15
+      },
+      {
+        "fold": 2,
+        "n_train": 570,
+        "n_val": 285,
+        "train_first_row": 15,
+        "val_first_row": 0,
+        "classes_absent_from_train": [],
+        "classes_absent_from_val": [],
+        "groups_shared_between_train_and_val": 0,
+        "rarest_class_rows_in_val": 15
+      }
+    ],
+    "any_class_absent_from_val": false,
+    "any_class_absent_from_train": false,
+    "max_groups_shared_between_train_and_val": 0,
+    "note": "a class absent from a fold is not scored as zero - macro averaging runs over the classes it can see, so the fold scores HIGHER than one that contains it. Read any_class_absent_from_val as 'this fold's score is not comparable to its siblings'"
+  },
+  "_evidence": {
+    "type": "validation",
+    "schema_version": 1,
+    "producer": "driver"
+  }
+}

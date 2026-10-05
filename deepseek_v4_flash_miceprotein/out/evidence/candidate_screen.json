@@ -1,0 +1,252 @@
+{
+  "protocol": {
+    "unit": "entity",
+    "strategy": "stratified_group_kfold",
+    "group_column": "mouse_id",
+    "time_column": null,
+    "why": "`mouse_id` was passed in, so folds are entity-disjoint",
+    "folds": 3,
+    "seed": 42,
+    "metrics": [
+      "f1_macro",
+      "accuracy"
+    ]
+  },
+  "n_pool": 855,
+  "n_screened": 855,
+  "subsampled": false,
+  "one_hot_width": 155,
+  "families": [
+    {
+      "family": "decision_tree",
+      "scaling_used": false,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.483798,
+          0.344934,
+          0.299961
+        ],
+        "accuracy": [
+          0.505263,
+          0.34386,
+          0.312281
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.376231,
+        "accuracy": 0.387135
+      },
+      "std": {
+        "f1_macro": 0.078246,
+        "accuracy": 0.084519
+      }
+    },
+    {
+      "family": "gradient_boosting",
+      "scaling_used": false,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.536352,
+          0.364023,
+          0.346382
+        ],
+        "accuracy": [
+          0.547368,
+          0.385965,
+          0.364912
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.415586,
+        "accuracy": 0.432749
+      },
+      "std": {
+        "f1_macro": 0.085698,
+        "accuracy": 0.081503
+      }
+    },
+    {
+      "family": "knn",
+      "scaling_used": true,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.415799,
+          0.360092,
+          0.335945
+        ],
+        "accuracy": [
+          0.414035,
+          0.407018,
+          0.382456
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.370612,
+        "accuracy": 0.40117
+      },
+      "std": {
+        "f1_macro": 0.033438,
+        "accuracy": 0.013539
+      }
+    },
+    {
+      "family": "logistic_regression",
+      "scaling_used": true,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.606837,
+          0.48103,
+          0.541712
+        ],
+        "accuracy": [
+          0.649123,
+          0.522807,
+          0.568421
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.543193,
+        "accuracy": 0.580117
+      },
+      "std": {
+        "f1_macro": 0.051371,
+        "accuracy": 0.052227
+      }
+    },
+    {
+      "family": "naive_bayes",
+      "scaling_used": false,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.546431,
+          0.327108,
+          0.302676
+        ],
+        "accuracy": [
+          0.550877,
+          0.361404,
+          0.319298
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.392072,
+        "accuracy": 0.410526
+      },
+      "std": {
+        "f1_macro": 0.109603,
+        "accuracy": 0.100721
+      }
+    },
+    {
+      "family": "random_forest",
+      "scaling_used": false,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.63722,
+          0.362062,
+          0.417576
+        ],
+        "accuracy": [
+          0.638596,
+          0.403509,
+          0.445614
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.472286,
+        "accuracy": 0.495906
+      },
+      "std": {
+        "f1_macro": 0.118808,
+        "accuracy": 0.102351
+      }
+    },
+    {
+      "family": "svm",
+      "scaling_used": true,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.629704,
+          0.465164,
+          0.488631
+        ],
+        "accuracy": [
+          0.649123,
+          0.526316,
+          0.526316
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.527833,
+        "accuracy": 0.567251
+      },
+      "std": {
+        "f1_macro": 0.072668,
+        "accuracy": 0.057892
+      }
+    }
+  ],
+  "excluded_without_fitting": [],
+  "errored": [],
+  "shortlist": {
+    "f1_macro": [
+      "logistic_regression",
+      "svm"
+    ],
+    "accuracy": [
+      "logistic_regression",
+      "svm"
+    ]
+  },
+  "bias": {
+    "decision_tree": "axis-aligned staircase",
+    "gradient_boosting": "axis-aligned staircase",
+    "knn": "local similarity",
+    "logistic_regression": "linear in the log-odds",
+    "naive_bayes": "per-column independence",
+    "random_forest": "axis-aligned staircase",
+    "svm": "kernel margin"
+  },
+  "pairs_with_different_bias": {
+    "f1_macro": [
+      [
+        "logistic_regression",
+        "svm"
+      ]
+    ],
+    "accuracy": [
+      [
+        "logistic_regression",
+        "svm"
+      ]
+    ]
+  },
+  "shortlist_rule": "every family whose mean is within one standard deviation of the best mean on that metric - wider than it looks, and deliberately so: it is here to exclude what is clearly behind, not to crown a winner",
+  "how_to_read_this": "These are screening numbers, not the report's numbers. Each family is fitted with its own defaults - no grid - so a family that is merely badly tuned here will look worse than it is. That is why the shortlist is one standard deviation wide and why the pair is taken from it rather than from the top of it. A family under the floor is behind on its own defaults and at its own spread; a family in the shortlist is one this dataset cannot rule out.",
+  "note": "evidence, not a verdict - two families still have to be taken from `shortlist`, differing in inductive bias, and the reason recorded. `pairs_with_different_bias` lists the shortlist combinations that satisfy that; an empty list means no pair inside the shortlist does, and the second family has to come from below the floor. Choosing the top two scores is not the same decision and is not what Step 4 asks for.",
+  "class_names": [
+    "c-CS-m",
+    "c-CS-s",
+    "c-SC-m",
+    "c-SC-s",
+    "t-CS-m",
+    "t-CS-s",
+    "t-SC-m",
+    "t-SC-s"
+  ],
+  "rows_dropped_missing_label": 0,
+  "n_test_held_out": 225,
+  "test_rows_excluded": "no family was fitted or scored on the test rows - they were split off before the screen started",
+  "_evidence": {
+    "type": "candidate_screen",
+    "schema_version": 1,
+    "producer": "screen"
+  }
+}

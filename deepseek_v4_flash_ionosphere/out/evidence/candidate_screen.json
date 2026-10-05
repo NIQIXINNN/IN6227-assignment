@@ -1,0 +1,256 @@
+{
+  "protocol": {
+    "unit": "row",
+    "strategy": "stratified_kfold",
+    "group_column": null,
+    "time_column": null,
+    "why": "structure.json reports 33 group candidate(s) and no column repeats with a lift over chance, so rows are treated as independent",
+    "folds": 3,
+    "seed": 42,
+    "metrics": [
+      "f1_macro",
+      "accuracy"
+    ]
+  },
+  "n_pool": 280,
+  "n_screened": 280,
+  "subsampled": false,
+  "one_hot_width": 34,
+  "families": [
+    {
+      "family": "decision_tree",
+      "scaling_used": false,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.82364,
+          0.941678,
+          0.809426
+        ],
+        "accuracy": [
+          0.840426,
+          0.946237,
+          0.827957
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.858248,
+        "accuracy": 0.87154
+      },
+      "std": {
+        "f1_macro": 0.059279,
+        "accuracy": 0.053063
+      }
+    },
+    {
+      "family": "gradient_boosting",
+      "scaling_used": false,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.916444,
+          0.976178,
+          0.854839
+        ],
+        "accuracy": [
+          0.925532,
+          0.978495,
+          0.870968
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.91582,
+        "accuracy": 0.924998
+      },
+      "std": {
+        "f1_macro": 0.049539,
+        "accuracy": 0.043899
+      }
+    },
+    {
+      "family": "knn",
+      "scaling_used": true,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.771104,
+          0.849677,
+          0.682298
+        ],
+        "accuracy": [
+          0.808511,
+          0.870968,
+          0.763441
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.767693,
+        "accuracy": 0.814306
+      },
+      "std": {
+        "f1_macro": 0.068375,
+        "accuracy": 0.044089
+      }
+    },
+    {
+      "family": "logistic_regression",
+      "scaling_used": true,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.844825,
+          0.879032,
+          0.806384
+        ],
+        "accuracy": [
+          0.861702,
+          0.892473,
+          0.83871
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.843414,
+        "accuracy": 0.864295
+      },
+      "std": {
+        "f1_macro": 0.029675,
+        "accuracy": 0.022025
+      }
+    },
+    {
+      "family": "naive_bayes",
+      "scaling_used": false,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.850398,
+          0.939992,
+          0.780569
+        ],
+        "accuracy": [
+          0.87234,
+          0.946237,
+          0.817204
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.856986,
+        "accuracy": 0.878594
+      },
+      "std": {
+        "f1_macro": 0.065251,
+        "accuracy": 0.052862
+      }
+    },
+    {
+      "family": "random_forest",
+      "scaling_used": false,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.905242,
+          0.965007,
+          0.841443
+        ],
+        "accuracy": [
+          0.914894,
+          0.967742,
+          0.860215
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.903897,
+        "accuracy": 0.914284
+      },
+      "std": {
+        "f1_macro": 0.050454,
+        "accuracy": 0.0439
+      }
+    },
+    {
+      "family": "svm",
+      "scaling_used": true,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.928931,
+          0.95303,
+          0.874731
+        ],
+        "accuracy": [
+          0.93617,
+          0.956989,
+          0.892473
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.918897,
+        "accuracy": 0.928544
+      },
+      "std": {
+        "f1_macro": 0.032744,
+        "accuracy": 0.026885
+      }
+    }
+  ],
+  "excluded_without_fitting": [],
+  "errored": [],
+  "shortlist": {
+    "f1_macro": [
+      "svm",
+      "gradient_boosting",
+      "random_forest"
+    ],
+    "accuracy": [
+      "svm",
+      "gradient_boosting",
+      "random_forest"
+    ]
+  },
+  "bias": {
+    "decision_tree": "axis-aligned staircase",
+    "gradient_boosting": "axis-aligned staircase",
+    "knn": "local similarity",
+    "logistic_regression": "linear in the log-odds",
+    "naive_bayes": "per-column independence",
+    "random_forest": "axis-aligned staircase",
+    "svm": "kernel margin"
+  },
+  "pairs_with_different_bias": {
+    "f1_macro": [
+      [
+        "svm",
+        "gradient_boosting"
+      ],
+      [
+        "svm",
+        "random_forest"
+      ]
+    ],
+    "accuracy": [
+      [
+        "svm",
+        "gradient_boosting"
+      ],
+      [
+        "svm",
+        "random_forest"
+      ]
+    ]
+  },
+  "shortlist_rule": "every family whose mean is within one standard deviation of the best mean on that metric - wider than it looks, and deliberately so: it is here to exclude what is clearly behind, not to crown a winner",
+  "how_to_read_this": "These are screening numbers, not the report's numbers. Each family is fitted with its own defaults - no grid - so a family that is merely badly tuned here will look worse than it is. That is why the shortlist is one standard deviation wide and why the pair is taken from it rather than from the top of it. A family under the floor is behind on its own defaults and at its own spread; a family in the shortlist is one this dataset cannot rule out.",
+  "note": "evidence, not a verdict - two families still have to be taken from `shortlist`, differing in inductive bias, and the reason recorded. `pairs_with_different_bias` lists the shortlist combinations that satisfy that; an empty list means no pair inside the shortlist does, and the second family has to come from below the floor. Choosing the top two scores is not the same decision and is not what Step 4 asks for.",
+  "class_names": [
+    "b",
+    "g"
+  ],
+  "rows_dropped_missing_label": 0,
+  "n_test_held_out": 71,
+  "test_rows_excluded": "no family was fitted or scored on the test rows - they were split off before the screen started",
+  "_evidence": {
+    "type": "candidate_screen",
+    "schema_version": 1,
+    "producer": "screen"
+  }
+}

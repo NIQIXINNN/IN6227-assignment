@@ -1,0 +1,840 @@
+{
+  "candidates": [
+    {
+      "column": "MouseID",
+      "dtype": "object",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": true
+    },
+    {
+      "column": "mouse_id",
+      "dtype": "object",
+      "n_unique": 72,
+      "n_missing": 0,
+      "unique_per_row": 0.0667,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "DYRK1A_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "ITSN1_N",
+      "dtype": "float64",
+      "n_unique": 1076,
+      "n_missing": 3,
+      "unique_per_row": 0.9963,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "BDNF_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "NR1_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "NR2A_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pAKT_N",
+      "dtype": "float64",
+      "n_unique": 1076,
+      "n_missing": 3,
+      "unique_per_row": 0.9963,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pBRAF_N",
+      "dtype": "float64",
+      "n_unique": 1075,
+      "n_missing": 3,
+      "unique_per_row": 0.9954,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pCAMKII_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pCREB_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pELK_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pERK_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pJNK_N",
+      "dtype": "float64",
+      "n_unique": 1076,
+      "n_missing": 3,
+      "unique_per_row": 0.9963,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "PKCA_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pMEK_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pNR1_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pNR2A_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pNR2B_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pPKCAB_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pRSK_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "AKT_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "BRAF_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "CAMKII_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "CREB_N",
+      "dtype": "float64",
+      "n_unique": 1073,
+      "n_missing": 3,
+      "unique_per_row": 0.9935,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "ELK_N",
+      "dtype": "float64",
+      "n_unique": 1062,
+      "n_missing": 18,
+      "unique_per_row": 0.9833,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "ERK_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "GSK3B_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "JNK_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "MEK_N",
+      "dtype": "float64",
+      "n_unique": 1072,
+      "n_missing": 7,
+      "unique_per_row": 0.9926,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "TRKA_N",
+      "dtype": "float64",
+      "n_unique": 1075,
+      "n_missing": 3,
+      "unique_per_row": 0.9954,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "RSK_N",
+      "dtype": "float64",
+      "n_unique": 1074,
+      "n_missing": 3,
+      "unique_per_row": 0.9944,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "APP_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "Bcatenin_N",
+      "dtype": "float64",
+      "n_unique": 1062,
+      "n_missing": 18,
+      "unique_per_row": 0.9833,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "SOD1_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "MTOR_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "P38_N",
+      "dtype": "float64",
+      "n_unique": 1075,
+      "n_missing": 3,
+      "unique_per_row": 0.9954,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pMTOR_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "DSCR1_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "AMPKA_N",
+      "dtype": "float64",
+      "n_unique": 1075,
+      "n_missing": 3,
+      "unique_per_row": 0.9954,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "NR2B_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pNUMB_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "RAPTOR_N",
+      "dtype": "float64",
+      "n_unique": 1077,
+      "n_missing": 3,
+      "unique_per_row": 0.9972,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "TIAM1_N",
+      "dtype": "float64",
+      "n_unique": 1075,
+      "n_missing": 3,
+      "unique_per_row": 0.9954,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pP70S6_N",
+      "dtype": "float64",
+      "n_unique": 1076,
+      "n_missing": 3,
+      "unique_per_row": 0.9963,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "NUMB_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "P70S6_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pGSK3B_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pPKCG_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "CDK5_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "S6_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "ADARB1_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "AcetylH3K9_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "RRP1_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "BAX_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "ARC_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "ERBB4_N",
+      "dtype": "float64",
+      "n_unique": 1079,
+      "n_missing": 0,
+      "unique_per_row": 0.9991,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "nNOS_N",
+      "dtype": "float64",
+      "n_unique": 1079,
+      "n_missing": 0,
+      "unique_per_row": 0.9991,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "Tau_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "GFAP_N",
+      "dtype": "float64",
+      "n_unique": 1079,
+      "n_missing": 0,
+      "unique_per_row": 0.9991,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "GluR3_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "GluR4_N",
+      "dtype": "float64",
+      "n_unique": 1079,
+      "n_missing": 0,
+      "unique_per_row": 0.9991,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "IL1B_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "P3525_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pCASP9_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "PSD95_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "SNCA_N",
+      "dtype": "float64",
+      "n_unique": 1079,
+      "n_missing": 0,
+      "unique_per_row": 0.9991,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "Ubiquitin_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pGSK3B_Tyr216_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "SHH_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "BAD_N",
+      "dtype": "float64",
+      "n_unique": 866,
+      "n_missing": 213,
+      "unique_per_row": 0.8019,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "BCL2_N",
+      "dtype": "float64",
+      "n_unique": 795,
+      "n_missing": 285,
+      "unique_per_row": 0.7361,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pS6_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "pCFOS_N",
+      "dtype": "float64",
+      "n_unique": 1005,
+      "n_missing": 75,
+      "unique_per_row": 0.9306,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "SYP_N",
+      "dtype": "float64",
+      "n_unique": 1079,
+      "n_missing": 0,
+      "unique_per_row": 0.9991,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "H3AcK18_N",
+      "dtype": "float64",
+      "n_unique": 900,
+      "n_missing": 180,
+      "unique_per_row": 0.8333,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "EGR1_N",
+      "dtype": "float64",
+      "n_unique": 870,
+      "n_missing": 210,
+      "unique_per_row": 0.8056,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "H3MeK4_N",
+      "dtype": "float64",
+      "n_unique": 810,
+      "n_missing": 270,
+      "unique_per_row": 0.75,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "CaNA_N",
+      "dtype": "float64",
+      "n_unique": 1080,
+      "n_missing": 0,
+      "unique_per_row": 1.0,
+      "name_matches_target_convention": false,
+      "plausible_class": false,
+      "looks_like_id": false
+    },
+    {
+      "column": "Genotype",
+      "dtype": "object",
+      "n_unique": 2,
+      "n_missing": 0,
+      "unique_per_row": 0.0019,
+      "name_matches_target_convention": false,
+      "plausible_class": true,
+      "looks_like_id": false
+    },
+    {
+      "column": "Treatment",
+      "dtype": "object",
+      "n_unique": 2,
+      "n_missing": 0,
+      "unique_per_row": 0.0019,
+      "name_matches_target_convention": false,
+      "plausible_class": true,
+      "looks_like_id": false
+    },
+    {
+      "column": "Behavior",
+      "dtype": "object",
+      "n_unique": 2,
+      "n_missing": 0,
+      "unique_per_row": 0.0019,
+      "name_matches_target_convention": false,
+      "plausible_class": true,
+      "looks_like_id": false
+    },
+    {
+      "column": "class",
+      "dtype": "object",
+      "n_unique": 8,
+      "n_missing": 0,
+      "unique_per_row": 0.0074,
+      "name_matches_target_convention": true,
+      "plausible_class": true,
+      "looks_like_id": false
+    }
+  ],
+  "note": "every column that could plausibly be the target, with the numbers behind it. Not a pick - choosing is yours, and if two candidates are close, ask the user.",
+  "_evidence": {
+    "type": "candidates",
+    "schema_version": 1,
+    "producer": "label_candidates"
+  }
+}

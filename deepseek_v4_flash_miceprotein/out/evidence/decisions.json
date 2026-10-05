@@ -1,0 +1,142 @@
+{
+  "_evidence": {
+    "type": "decisions",
+    "schema_version": 1,
+    "producer": "DecisionLog"
+  },
+  "n_decisions": 8,
+  "steps_covered": [
+    "cleaning",
+    "final_fit",
+    "label",
+    "metrics",
+    "model_selection",
+    "preprocessing",
+    "validation"
+  ],
+  "decisions": [
+    {
+      "step": "label",
+      "decision": "target column",
+      "choice": "class",
+      "reason": "The only column whose name matches the target convention, and the only 8-class discrete column. Genotype, Treatment and Behaviour are 2-class columns that jointly define class (class = genotype x behaviour x treatment), so they are components of the label rather than rival targets.",
+      "alternatives_considered": [
+        "Genotype (2 classes) - rejected: a factor of class, so it answers a strictly easier question",
+        "Treatment (2 classes) - rejected: a factor of class, not the intended 8-group outcome",
+        "Behaviour (2 classes) - rejected: a factor of class, not the intended 8-group outcome",
+        "MouseID - rejected: one distinct value per row, an identifier"
+      ],
+      "inputs": {
+        "n_classes_hint": "see eda.json"
+      }
+    },
+    {
+      "step": "cleaning",
+      "decision": "cleaning policy",
+      "choice": "keep outliers; drop rows with no label; rarest class: keep; exclude 5 column(s) from the features",
+      "reason": "MouseID and mouse_id are identifiers - MouseID is unique per row, mouse_id repeats 15x and is the entity key. Genotype, Treatment and Behavior deterministically define class, so keeping them would leak the label; the first row-level screen returned perfect scores because of them. Protein values are ratio measurements on a common scale, so extreme readings are kept as possible signal. Missing feature values are imputed inside the pipeline and never by hand.",
+      "alternatives_considered": [
+        "Keep Genotype/Treatment/Behavior as features - rejected: class is their cross-product, so the task becomes trivial",
+        "Keep mouse_id as a feature - rejected: an entity key used for grouping tells the model the answer then tests on it",
+        "IQR outlier filtering - rejected: discards extreme protein responses that can distinguish treatment groups",
+        "Drop or merge the rarest class - rejected: t-CS-s is meaningful, with zero duplicates, zero contradictions and local lift 10.4"
+      ],
+      "inputs": {
+        "drop_columns": [
+          "MouseID",
+          "mouse_id",
+          "Genotype",
+          "Treatment",
+          "Behavior"
+        ]
+      }
+    },
+    {
+      "step": "model_selection",
+      "decision": "the two families",
+      "choice": "logistic_regression and svm",
+      "reason": "logistic_regression: Highest honest screen mean (f1_macro 0.543, SD 0.051) and the only linear-in-the-log-odds family, so it forms one half of a maximum-contrast pair; its signed coefficients over 77 protein assays are readable. The grid searches regularisation strength, the axis that matters with 77 correlated columns and 855 pool rows, and class_weight balances the classes under a macro-F1 objective. svm: Second on the honest screen (f1_macro 0.528) and inside the shortlist; its kernel-margin bias differs from the linear model, so the pair probes two boundary shapes. C and gamma decide how tightly the RBF boundary wraps the training mice.",
+      "alternatives_considered": [
+        "random_forest (0.472, third) - rejected: below the one-SD floor and same staircase bias as the tree families",
+        "gradient_boosting (0.416) and decision_tree (0.376) - rejected: same bias and clearly behind",
+        "naive_bayes (0.392) - rejected: independence assumption violated by 77 correlated assays",
+        "knn (0.371) - rejected: lowest screen mean; distance concentration across 77 columns",
+        "logistic_regression as the second model - rejected: already the first entry; two of one family cannot contrast bias",
+        "random_forest - rejected: below the one-SD floor on this protocol",
+        "naive_bayes - rejected: outside the shortlist and a violated independence assumption",
+        "gradient_boosting - rejected: outside the shortlist and a repeated staircase bias"
+      ],
+      "inputs": {
+        "families": [
+          "logistic_regression",
+          "svm"
+        ],
+        "stopping": {
+          "logistic_regression": "lbfgs, max_iter=2000, tol=1e-4; no early stop",
+          "svm": "libsvm QP to tol=1e-3, max_iter=-1"
+        }
+      }
+    },
+    {
+      "step": "preprocessing",
+      "decision": "scaling, per model",
+      "choice": "logistic_regression: scale=True; svm: scale=True",
+      "reason": "logistic_regression: generally recommended, close to required in practice - a shared L2 penalty compares coefficients, so units matter svm: generally recommended, close to required for an RBF kernel - the margin is a distance",
+      "alternatives_considered": [
+        "logistic_regression with scale=False - the registry's stated preference for this family is in reference.md section 3",
+        "svm with scale=False - the registry's stated preference for this family is in reference.md section 3"
+      ],
+      "inputs": {}
+    },
+    {
+      "step": "validation",
+      "decision": "how validation is formed",
+      "choice": "entity-unit; stratified_group_kfold; n_splits=3; test_size=0.2; val_fraction=0.2",
+      "reason": "Rows are not independent: 1080 rows are 72 mice measured 15 times each, and mouse_id has a nearest-neighbour same-value share of 0.994 (lift 76.6). A row-level split puts one mouse on both sides and scores recognition, which is what the first screen's near-perfect scores were. Grouping by mouse_id with stratified_group_kfold keeps every mouse whole and the class proportions intact. The rarest class t-CS-s is 7 mice; after the 20% grouped test holdout 5 remain in the pool, so each of 3 folds validates one mouse (15 rows) of that class - all eight classes appear in every fold. Three folds average three estimates and the final model refits on the whole pool; 5 folds would leave a fold with a single rare mouse.",
+      "alternatives_considered": [
+        "row / stratified_kfold - rejected: leaks mice across the boundary and produced the misleading 1.0 scores",
+        "grouped_holdout - rejected: one estimate on about 19 mice is noisier than three entity-disjoint folds",
+        "5 folds - rejected: with only 5 t-CS-s mice in the pool a fold would hold a single rare mouse",
+        "temporal split - rejected: no time column exists"
+      ],
+      "inputs": {
+        "unit": "entity",
+        "strategy": "stratified_group_kfold"
+      }
+    },
+    {
+      "step": "metrics",
+      "decision": "tuning metric",
+      "choice": "f1_macro",
+      "reason": "f1_macro matches the primary metric: all eight groups matter equally, so the search is tuned on the same ruler the report leads with.",
+      "alternatives_considered": [
+        "accuracy - rejected: dominated by the largest classes and would tune toward ignoring t-CS-s",
+        "final_fit_scope train+validation - rejected: under k-fold it discards validation rows for no gain"
+      ],
+      "inputs": {}
+    },
+    {
+      "step": "metrics",
+      "decision": "primary metric",
+      "choice": "f1_macro",
+      "reason": "Objective: assign each sample to one of eight experimental groups with no single class as the positive of interest, and a misassignment between adjacent groups costs the same, so classes should weigh equally. Distribution: 105-150 rows each (ratio 1.43) and each of the three folds contains all eight classes, so macro-F1 is estimable and exposes failure on the 105-row t-CS-s.",
+      "alternatives_considered": [
+        "accuracy - Accuracy is majority-weighted; a model that never predicts t-CS-s could still score near 0.9, hiding exactly the failure a classifier of a rare experimental group must not hide."
+      ],
+      "inputs": {}
+    },
+    {
+      "step": "final_fit",
+      "decision": "what the final model is fitted on",
+      "choice": "pool",
+      "reason": "Under 3-fold entity CV every pool mouse is validated against exactly once, so refitting on the whole pool uses all non-test mice without touching the grouped test set.",
+      "alternatives_considered": [
+        "train - the scopes differ in how much data the final fit sees and, for 'pool', in whether the test estimate is still untouched by selection",
+        "train+validation - the scopes differ in how much data the final fit sees and, for 'pool', in whether the test estimate is still untouched by selection"
+      ],
+      "inputs": {
+        "final_fit_scope": "pool"
+      }
+    }
+  ]
+}

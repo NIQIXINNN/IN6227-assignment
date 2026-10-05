@@ -1,0 +1,1446 @@
+{
+  "n_rows": 1080,
+  "feature_columns_searched": [
+    "DYRK1A_N",
+    "ITSN1_N",
+    "BDNF_N",
+    "NR1_N",
+    "NR2A_N",
+    "pAKT_N",
+    "pBRAF_N",
+    "pCAMKII_N",
+    "pCREB_N",
+    "pELK_N",
+    "pERK_N",
+    "pJNK_N",
+    "PKCA_N",
+    "pMEK_N",
+    "pNR1_N",
+    "pNR2A_N",
+    "pNR2B_N",
+    "pPKCAB_N",
+    "pRSK_N",
+    "AKT_N",
+    "BRAF_N",
+    "CAMKII_N",
+    "CREB_N",
+    "ELK_N",
+    "ERK_N",
+    "GSK3B_N",
+    "JNK_N",
+    "MEK_N",
+    "TRKA_N",
+    "RSK_N",
+    "APP_N",
+    "Bcatenin_N",
+    "SOD1_N",
+    "MTOR_N",
+    "P38_N",
+    "pMTOR_N",
+    "DSCR1_N",
+    "AMPKA_N",
+    "NR2B_N",
+    "pNUMB_N",
+    "RAPTOR_N",
+    "TIAM1_N",
+    "pP70S6_N",
+    "NUMB_N",
+    "P70S6_N",
+    "pGSK3B_N",
+    "pPKCG_N",
+    "CDK5_N",
+    "S6_N",
+    "ADARB1_N",
+    "AcetylH3K9_N",
+    "RRP1_N",
+    "BAX_N",
+    "ARC_N",
+    "ERBB4_N",
+    "nNOS_N",
+    "Tau_N",
+    "GFAP_N",
+    "GluR3_N",
+    "GluR4_N",
+    "IL1B_N",
+    "P3525_N",
+    "pCASP9_N",
+    "PSD95_N",
+    "SNCA_N",
+    "Ubiquitin_N",
+    "pGSK3B_Tyr216_N",
+    "SHH_N",
+    "BAD_N",
+    "BCL2_N",
+    "pS6_N",
+    "pCFOS_N",
+    "SYP_N",
+    "H3AcK18_N",
+    "EGR1_N",
+    "H3MeK4_N",
+    "CaNA_N"
+  ],
+  "group_candidates": [
+    {
+      "column": "mouse_id",
+      "n_unique": 72,
+      "rows_per_value_mean": 15.0,
+      "rows_per_value_median": 15.0,
+      "rows_per_value_max": 15,
+      "name_matches_entity_convention": true,
+      "is_in_feature_set": false,
+      "example_values": [
+        "309",
+        "311",
+        "320"
+      ],
+      "same_value_share_nearest_neighbour": 0.9944,
+      "chance_baseline_share": 0.012975,
+      "lift_over_chance": 76.64,
+      "lift_withheld_because": null,
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 1074.0,
+      "search_note": null
+    },
+    {
+      "column": "Behavior",
+      "n_unique": 2,
+      "rows_per_value_mean": 540.0,
+      "rows_per_value_median": 540.0,
+      "rows_per_value_max": 555,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": false,
+      "example_values": [
+        "C/S",
+        "S/C"
+      ],
+      "same_value_share_nearest_neighbour": 0.9991,
+      "chance_baseline_share": 0.499923,
+      "lift_over_chance": 2.0,
+      "lift_withheld_because": null,
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 1079.0,
+      "search_note": null
+    },
+    {
+      "column": "Genotype",
+      "n_unique": 2,
+      "rows_per_value_mean": 540.0,
+      "rows_per_value_median": 540.0,
+      "rows_per_value_max": 570,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": false,
+      "example_values": [
+        "Control",
+        "Ts65Dn"
+      ],
+      "same_value_share_nearest_neighbour": 0.9991,
+      "chance_baseline_share": 0.501081,
+      "lift_over_chance": 1.99,
+      "lift_withheld_because": null,
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 1079.0,
+      "search_note": null
+    },
+    {
+      "column": "Treatment",
+      "n_unique": 2,
+      "rows_per_value_mean": 540.0,
+      "rows_per_value_median": 540.0,
+      "rows_per_value_max": 570,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": false,
+      "example_values": [
+        "Memantine",
+        "Saline"
+      ],
+      "same_value_share_nearest_neighbour": 0.9981,
+      "chance_baseline_share": 0.501081,
+      "lift_over_chance": 1.99,
+      "lift_withheld_because": null,
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 1077.9,
+      "search_note": null
+    },
+    {
+      "column": "DYRK1A_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.503643884",
+        "0.51461708",
+        "0.509183088"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "ITSN1_N",
+      "n_unique": 1076,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 2,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.747193224",
+        "0.689063548",
+        "0.730246795"
+      ],
+      "same_value_share_nearest_neighbour": 0.0046,
+      "chance_baseline_share": 7e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 5.0,
+      "search_note": null
+    },
+    {
+      "column": "BDNF_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.4301753",
+        "0.411770344",
+        "0.418308781"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "NR1_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "2.81632854",
+        "2.789514042",
+        "2.687201071"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "NR2A_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "5.990151664",
+        "5.685037861",
+        "5.622058542"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "pAKT_N",
+      "n_unique": 1076,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 2,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.218830018",
+        "0.211636155",
+        "0.209010905"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 7e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "pBRAF_N",
+      "n_unique": 1075,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 2,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.177565491",
+        "0.172817023",
+        "0.175722212"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 9e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "pCAMKII_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "2.373744337",
+        "2.292149909",
+        "2.283336522"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "pCREB_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.232223754",
+        "0.226972108",
+        "0.230246795"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "pELK_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "1.750935592",
+        "1.596376881",
+        "1.561316243"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "pERK_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.687906244",
+        "0.69500623",
+        "0.677348383"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "pJNK_N",
+      "n_unique": 1076,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 2,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.306381721",
+        "0.299051088",
+        "0.291276067"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 7e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "PKCA_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.402698444",
+        "0.385986773",
+        "0.381002487"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "pMEK_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.296927319",
+        "0.281318892",
+        "0.28171035"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "pNR1_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "1.022060272",
+        "0.956675932",
+        "1.003634972"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "pNR2A_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.605672641",
+        "0.587558708",
+        "0.602448823"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "pNR2B_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "1.877683671",
+        "1.725773986",
+        "1.731872967"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "pPKCAB_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "2.308745322",
+        "2.043036519",
+        "2.017983547"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "pRSK_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.44159937",
+        "0.445221892",
+        "0.467667878"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "AKT_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.859365767",
+        "0.834659254",
+        "0.814329443"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "BRAF_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.416289147",
+        "0.400364229",
+        "0.399846949"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "CAMKII_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.369608036",
+        "0.356177514",
+        "0.36808877"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "CREB_N",
+      "n_unique": 1073,
+      "rows_per_value_mean": 1.01,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 2,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.178944258",
+        "0.17367967",
+        "0.173904725"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 1.2e-05,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1.01 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "ELK_N",
+      "n_unique": 1062,
+      "rows_per_value_mean": 1.02,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "1.866358085",
+        "1.761046679",
+        "1.765544289"
+      ],
+      "same_value_share_nearest_neighbour": 0.0167,
+      "chance_baseline_share": 0.000263,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1.02 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 18.0,
+      "search_note": null
+    },
+    {
+      "column": "ERK_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "3.685247193",
+        "3.48528707",
+        "3.571455902"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "GSK3B_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "1.537226709",
+        "1.509249497",
+        "1.501243543"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "JNK_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.264526295",
+        "0.25572702",
+        "0.259613545"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "MEK_N",
+      "n_unique": 1072,
+      "rows_per_value_mean": 1.01,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 2,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.319676975",
+        "0.304418672",
+        "0.3117467"
+      ],
+      "same_value_share_nearest_neighbour": 0.0056,
+      "chance_baseline_share": 3.8e-05,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1.01 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 6.0,
+      "search_note": null
+    },
+    {
+      "column": "TRKA_N",
+      "n_unique": 1075,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 2,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.813866457",
+        "0.780504169",
+        "0.785154008"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 9e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "RSK_N",
+      "n_unique": 1074,
+      "rows_per_value_mean": 1.01,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 2,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.165845972",
+        "0.157193521",
+        "0.160895351"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 1e-05,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1.01 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "APP_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.453909789",
+        "0.430940286",
+        "0.423187297"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "Bcatenin_N",
+      "n_unique": 1062,
+      "rows_per_value_mean": 1.02,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "3.037620642",
+        "2.921882488",
+        "2.944136216"
+      ],
+      "same_value_share_nearest_neighbour": 0.0167,
+      "chance_baseline_share": 0.000263,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1.02 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 18.0,
+      "search_note": null
+    },
+    {
+      "column": "SOD1_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.369509553",
+        "0.342279306",
+        "0.343696193"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "MTOR_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.458538507",
+        "0.423559858",
+        "0.425004783"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "P38_N",
+      "n_unique": 1075,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 2,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.335335828",
+        "0.324834659",
+        "0.324851731"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 9e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "pMTOR_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.825192043",
+        "0.761717627",
+        "0.757030802"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "DSCR1_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.576915501",
+        "0.545097287",
+        "0.543619667"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "AMPKA_N",
+      "n_unique": 1075,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 2,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.448099271",
+        "0.420876066",
+        "0.404629807"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 9e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "NR2B_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.58627142",
+        "0.545097287",
+        "0.552994069"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "pNUMB_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.394721292",
+        "0.368254577",
+        "0.363879855"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "RAPTOR_N",
+      "n_unique": 1077,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.339570613",
+        "0.321959168",
+        "0.3130859"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 5e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "TIAM1_N",
+      "n_unique": 1075,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 2,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.482863896",
+        "0.454519314",
+        "0.447197245"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 9e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "pP70S6_N",
+      "n_unique": 1076,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 2,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.294169785",
+        "0.276430557",
+        "0.256648173"
+      ],
+      "same_value_share_nearest_neighbour": 0.0028,
+      "chance_baseline_share": 7e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 3.0,
+      "search_note": null
+    },
+    {
+      "column": "ERBB4_N",
+      "n_unique": 1079,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 2,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.144989339",
+        "0.150470868",
+        "0.145330199"
+      ],
+      "same_value_share_nearest_neighbour": 0.0,
+      "chance_baseline_share": 2e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 0.0,
+      "search_note": null
+    },
+    {
+      "column": "nNOS_N",
+      "n_unique": 1079,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 2,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.176667682",
+        "0.178309014",
+        "0.176212866"
+      ],
+      "same_value_share_nearest_neighbour": 0.0,
+      "chance_baseline_share": 2e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 0.0,
+      "search_note": null
+    },
+    {
+      "column": "GFAP_N",
+      "n_unique": 1079,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 2,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.115290892",
+        "0.118234503",
+        "0.117760205"
+      ],
+      "same_value_share_nearest_neighbour": 0.0,
+      "chance_baseline_share": 2e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 0.0,
+      "search_note": null
+    },
+    {
+      "column": "GluR4_N",
+      "n_unique": 1079,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 2,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.14275561",
+        "0.142036635",
+        "0.142444967"
+      ],
+      "same_value_share_nearest_neighbour": 0.0,
+      "chance_baseline_share": 2e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 0.0,
+      "search_note": null
+    },
+    {
+      "column": "SNCA_N",
+      "n_unique": 1079,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 2,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.108234339",
+        "0.109748525",
+        "0.108196196"
+      ],
+      "same_value_share_nearest_neighbour": 0.0,
+      "chance_baseline_share": 2e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 0.0,
+      "search_note": null
+    },
+    {
+      "column": "BAD_N",
+      "n_unique": 866,
+      "rows_per_value_mean": 1.25,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 2,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.122652046",
+        "0.11668219",
+        "0.118508228"
+      ],
+      "same_value_share_nearest_neighbour": 0.1954,
+      "chance_baseline_share": 0.038752,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1.25 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 211.0,
+      "search_note": null
+    },
+    {
+      "column": "BCL2_N",
+      "n_unique": 795,
+      "rows_per_value_mean": 1.36,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.178603749",
+        "0.14358804",
+        "0.132886542"
+      ],
+      "same_value_share_nearest_neighbour": 0.263,
+      "chance_baseline_share": 0.069457,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1.36 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 284.0,
+      "search_note": null
+    },
+    {
+      "column": "pCFOS_N",
+      "n_unique": 1005,
+      "rows_per_value_mean": 1.07,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.108335872",
+        "0.10431543",
+        "0.106219278"
+      ],
+      "same_value_share_nearest_neighbour": 0.0694,
+      "chance_baseline_share": 0.004763,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1.07 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 75.0,
+      "search_note": null
+    },
+    {
+      "column": "SYP_N",
+      "n_unique": 1079,
+      "rows_per_value_mean": 1.0,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 2,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.427099198",
+        "0.441581289",
+        "0.435776875"
+      ],
+      "same_value_share_nearest_neighbour": 0.0,
+      "chance_baseline_share": 2e-06,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 0.0,
+      "search_note": null
+    },
+    {
+      "column": "H3AcK18_N",
+      "n_unique": 900,
+      "rows_per_value_mean": 1.2,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.114783227",
+        "0.111973507",
+        "0.111882881"
+      ],
+      "same_value_share_nearest_neighbour": 0.1657,
+      "chance_baseline_share": 0.027649,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1.2 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 179.0,
+      "search_note": null
+    },
+    {
+      "column": "EGR1_N",
+      "n_unique": 870,
+      "rows_per_value_mean": 1.24,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.131790029",
+        "0.13510297",
+        "0.133361829"
+      ],
+      "same_value_share_nearest_neighbour": 0.1917,
+      "chance_baseline_share": 0.037663,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1.24 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 207.0,
+      "search_note": null
+    },
+    {
+      "column": "H3MeK4_N",
+      "n_unique": 810,
+      "rows_per_value_mean": 1.33,
+      "rows_per_value_median": 1.0,
+      "rows_per_value_max": 1,
+      "name_matches_entity_convention": false,
+      "is_in_feature_set": true,
+      "example_values": [
+        "0.128185603",
+        "0.1311187",
+        "0.127431075"
+      ],
+      "same_value_share_nearest_neighbour": 0.2481,
+      "chance_baseline_share": 0.062326,
+      "lift_over_chance": null,
+      "lift_withheld_because": "only 1.33 rows per value on average, so 'same value' nearly always means 'the same row' and the ratio measures nothing. Read the share and the baseline directly.",
+      "rows_searched": 1080,
+      "rows_whose_neighbour_shares_the_value": 267.9,
+      "search_note": null
+    }
+  ],
+  "time_candidates": [],
+  "dropped_id_like_reviewed": [],
+  "columns_not_examined": [
+    {
+      "column": "MouseID",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "NUMB_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "P70S6_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "pGSK3B_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "pPKCG_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "CDK5_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "S6_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "ADARB1_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "AcetylH3K9_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "RRP1_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "BAX_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "ARC_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "Tau_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "GluR3_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "IL1B_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "P3525_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "pCASP9_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "PSD95_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "Ubiquitin_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "pGSK3B_Tyr216_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "SHH_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "pS6_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    },
+    {
+      "column": "CaNA_N",
+      "n_unique": 1080,
+      "why": "one distinct value per row"
+    }
+  ],
+  "how_to_read_this": "A high lift_over_chance means rows sharing this column's value resemble each other in the OTHER columns - true of a real entity key and also of a strong ordinary predictor. Read rows_per_value_mean alongside it: a column with only a row or two per value measures as a huge lift for arithmetic reasons, so its lift is withheld and lift_withheld_because says why. A handful of repeats per value is what a plausible entity key looks like. If a column IS an entity key it must not enter numeric/categorical: pass it as groups= to the splitter instead. Nothing here is a verdict - decide and say which evidence decided it.",
+  "note": "evidence, not a verdict - whether the rows are independent is a judgement made in SKILL.md Step 3 and recorded in the report",
+  "_evidence": {
+    "type": "structure",
+    "schema_version": 1,
+    "producer": "structure_evidence"
+  }
+}

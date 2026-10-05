@@ -1,0 +1,36 @@
+{
+  "n_rows": 1080,
+  "n_features": 77,
+  "n_numeric": 77,
+  "n_categorical": 0,
+  "rows_per_feature": 14.0,
+  "n_classes": 8,
+  "class_counts": {
+    "c-CS-m": 150,
+    "c-SC-m": 150,
+    "c-CS-s": 135,
+    "c-SC-s": 135,
+    "t-CS-m": 135,
+    "t-SC-m": 135,
+    "t-SC-s": 135,
+    "t-CS-s": 105
+  },
+  "imbalance_ratio": 1.4286,
+  "rarest_class": "t-CS-s",
+  "rarest_rows": 105,
+  "one_hot_width": 77,
+  "categorical_cardinality": {},
+  "max_cardinality": 0,
+  "median_cardinality": 0.0,
+  "high_cardinality_columns": [],
+  "constant_columns": [],
+  "near_constant_columns": [],
+  "missing_share": 0.016787,
+  "duplicate_row_share": 0.0,
+  "note": "facts about this dataset's shape, not a ranking. Read them against the capability table from describe_models(), and eliminate a family only for a reason that names one of these numbers (SKILL.md Step 4)",
+  "_evidence": {
+    "type": "model_selection",
+    "schema_version": 1,
+    "producer": "model_selection_evidence"
+  }
+}

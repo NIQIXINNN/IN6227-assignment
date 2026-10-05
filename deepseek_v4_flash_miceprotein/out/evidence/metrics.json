@@ -1,0 +1,324 @@
+{
+  "logistic_regression": {
+    "_evidence": {
+      "type": "evaluation",
+      "schema_version": 1,
+      "producer": "evaluate"
+    },
+    "model": "logistic_regression",
+    "classes": [
+      "c-CS-m",
+      "c-CS-s",
+      "c-SC-m",
+      "c-SC-s",
+      "t-CS-m",
+      "t-CS-s",
+      "t-SC-m",
+      "t-SC-s"
+    ],
+    "n_scored": 225,
+    "accuracy": 0.6533333333333333,
+    "precision_macro": 0.6961907679738562,
+    "recall_macro": 0.5979166666666667,
+    "f1_macro": 0.581133607037611,
+    "f1_weighted": 0.6508316106485467,
+    "roc_auc": 0.9317279942279942,
+    "roc_auc_averaging": "multiclass-ovr-macro",
+    "roc_auc_note": null,
+    "pr_auc": null,
+    "pr_auc_note": "not defined for multiclass (expected, not a failure)",
+    "confusion_matrix": [
+      [
+        23,
+        22,
+        0,
+        0,
+        15,
+        0,
+        0,
+        0
+      ],
+      [
+        9,
+        6,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        45,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        15,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        12,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        2,
+        28,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        14,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        28
+      ]
+    ],
+    "per_class": {
+      "c-CS-m": {
+        "support": 60,
+        "recall": 0.3833,
+        "precision": 0.6765,
+        "false_negatives": 37
+      },
+      "c-CS-s": {
+        "support": 15,
+        "recall": 0.4,
+        "precision": 0.15,
+        "false_negatives": 9
+      },
+      "c-SC-m": {
+        "support": 45,
+        "recall": 1.0,
+        "precision": 0.75,
+        "false_negatives": 0
+      },
+      "c-SC-s": {
+        "support": 15,
+        "recall": 1.0,
+        "precision": 0.9375,
+        "false_negatives": 0
+      },
+      "t-CS-m": {
+        "support": 15,
+        "recall": 0.0667,
+        "precision": 0.0556,
+        "false_negatives": 14
+      },
+      "t-CS-s": {
+        "support": 30,
+        "recall": 0.9333,
+        "precision": 1.0,
+        "false_negatives": 2
+      },
+      "t-SC-m": {
+        "support": 15,
+        "recall": 0.0667,
+        "precision": 1.0,
+        "false_negatives": 14
+      },
+      "t-SC-s": {
+        "support": 30,
+        "recall": 0.9333,
+        "precision": 1.0,
+        "false_negatives": 2
+      }
+    }
+  },
+  "svm": {
+    "_evidence": {
+      "type": "evaluation",
+      "schema_version": 1,
+      "producer": "evaluate"
+    },
+    "model": "svm",
+    "classes": [
+      "c-CS-m",
+      "c-CS-s",
+      "c-SC-m",
+      "c-SC-s",
+      "t-CS-m",
+      "t-CS-s",
+      "t-SC-m",
+      "t-SC-s"
+    ],
+    "n_scored": 225,
+    "accuracy": 0.6755555555555556,
+    "precision_macro": 0.7200328776095428,
+    "recall_macro": 0.5958333333333333,
+    "f1_macro": 0.5899789156895888,
+    "f1_weighted": 0.6771740912654759,
+    "roc_auc": 0.9409548167881501,
+    "roc_auc_averaging": "multiclass-ovr-macro",
+    "roc_auc_note": null,
+    "pr_auc": null,
+    "pr_auc_note": "not defined for multiclass (expected, not a failure)",
+    "confusion_matrix": [
+      [
+        36,
+        20,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0
+      ],
+      [
+        9,
+        6,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        45,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        15,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        3,
+        10,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        11,
+        17,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        14,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        30
+      ]
+    ],
+    "per_class": {
+      "c-CS-m": {
+        "support": 60,
+        "recall": 0.6,
+        "precision": 0.75,
+        "false_negatives": 24
+      },
+      "c-CS-s": {
+        "support": 15,
+        "recall": 0.4,
+        "precision": 0.1622,
+        "false_negatives": 9
+      },
+      "c-SC-m": {
+        "support": 45,
+        "recall": 1.0,
+        "precision": 0.7627,
+        "false_negatives": 0
+      },
+      "c-SC-s": {
+        "support": 15,
+        "recall": 1.0,
+        "precision": 1.0,
+        "false_negatives": 0
+      },
+      "t-CS-m": {
+        "support": 15,
+        "recall": 0.1333,
+        "precision": 0.1176,
+        "false_negatives": 13
+      },
+      "t-CS-s": {
+        "support": 30,
+        "recall": 0.5667,
+        "precision": 1.0,
+        "false_negatives": 13
+      },
+      "t-SC-m": {
+        "support": 15,
+        "recall": 0.0667,
+        "precision": 1.0,
+        "false_negatives": 14
+      },
+      "t-SC-s": {
+        "support": 30,
+        "recall": 1.0,
+        "precision": 0.9677,
+        "false_negatives": 0
+      }
+    }
+  }
+}

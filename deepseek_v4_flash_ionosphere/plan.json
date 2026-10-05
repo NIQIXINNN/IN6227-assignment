@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "dataset": "C:\\Users\\86180\\Desktop\\IN6227\\datasets-extra\\ionosphere.csv",
+  "test_dataset": null,
+  "seed": 42,
+  "target": {
+    "column": "class",
+    "reason": "class is the only column whose name matches the target convention (label/class/target/outcome) and it is the only string column: 2 distinct values (g=225, b=126), 0 missing, 0.57% unique per row. attr_0 is integer with 2 values but is a radar-feature indicator (mean 0.89, not a class name) and attr_1 has a single value.",
+    "alternatives_considered": [
+      "attr_0 - 2 distinct integer values, but the name matches no target convention, every value is a measurement on a normalised radar attribute, and eda.json lists it under numeric_features; treating it as the label would discard 33 real predictors and predict a within-feature indicator.",
+      "attr_1 - a single distinct value (constant), so it cannot be a classification target."
+    ]
+  },
+  "cleaning": {
+    "drop_columns": [],
+    "drop_rows_with_missing_label": true,
+    "rarest_class_action": "keep",
+    "outlier_policy": {"method": "keep"},
+    "reason": "Nothing needs removing. No column is identifier-like (structure.json finds no repeated-value column with a lift over chance - every candidate has is_in_feature_set true and rows_per_value_mean near 1, with the lift withheld because values are nearly unique), so drop_columns is empty. The target has 0 missing values, so drop_rows_with_missing_label is set true but affects 0 rows. The rarest class b (126 rows, 36%, lift_over_chance 1.89, 0 contradicted rows, effective_unique_rows 125) is substantive and locally structured, so it is kept. Outliers are kept because the b class is defined by unusual radar returns - an IQR filter would delete the very rows the task must detect and inflate apparent accuracy.",
+    "alternatives_considered": [
+      "Dropping constant attr_1 - rejected: a constant carries no variance, is harmless to trees and disappears under standardisation, and the screen measured every family with it present.",
+      "Dropping attr_0 - rejected: it is a genuine (if skewed) radar indicator, not an identifier, and structure.json's lift of 1.11 with is_in_feature_set true marks it an ordinary predictor.",
+      "Applying an IQR outlier filter - rejected: b is the class of anomalous returns, so filtering the tails removes signal rather than noise.",
+      "Dropping duplicated rows - rejected: only 1 duplicate row exists and contradicted_rows is 0, so de-duplication would cost a rare row for no measurable gain."
+    ]
+  },
+  "models": [
+    {
+      "family": "svm",
+      "scale": true,
+      "scale_reason": "generally recommended, close to required with the rbf kernel - the margin is a distance, so an unscaled feature would set it; standardising stays inside the fold.",
+      "stopping": "libsvm runs to its default tolerance (tol=1e-3); no iteration cap was set.",
+      "overfitting_control": "soft-margin C in {1,10,100} and gamma shrinkage bound the margin.",
+      "grid": {
+        "kernel": ["rbf", "linear"],
+        "C": [1, 10, 100],
+        "gamma": ["scale", 0.1, 0.01]
+      },
+      "reason": "Top of candidate_screen.json on both metrics (f1_macro 0.9189 +/- 0.0327, accuracy 0.9285) and its most settled score of the seven. The 34 continuous, standardised radar attributes make a kernel margin plausible: b is a locally separable set (lift 1.89), which an rbf kernel can enclose and a linear boundary may not. Searching kernel {rbf, linear} tests whether that non-linearity is needed, and C/gamma control margin softness and locality.",
+      "alternatives_considered": [
+        "logistic_regression - the only linear family, screened at 0.8434, more than one std below the leader; 34 correlated one-hot-free numeric columns give it no boundary a kernel cannot draw better.",
+        "knn - screened bottom at 0.7677 with the widest spread; distance concentration across 34 columns degrades local similarity here.",
+        "naive_bayes and decision_tree - both below the shortlist floor on their own defaults."
+      ]
+    },
+    {
+      "family": "gradient_boosting",
+      "scale": false,
+      "scale_reason": "not required - a split thresholds one feature, so monotone rescaling leaves every reachable split identical.",
+      "stopping": "fixed 100 boosting rounds from the grid; no early stopping.",
+      "overfitting_control": "max_depth <= 3 and learning_rate shrinkage cap tree complexity.",
+      "grid": {
+        "n_estimators": [100, 200],
+        "learning_rate": [0.05, 0.1],
+        "max_depth": [2, 3]
+      },
+      "reason": "Second on the screen (f1_macro 0.9158 +/- 0.0495) and the strongest axis-aligned staircase available. It is chosen over random_forest (0.9039) because it screened higher on the same folds and the two share one inductive bias, so only one staircase belongs in the pair. Depth is capped low because 280 pool rows over 34 features will memorise quickly, and the learning-rate/rounds axes cover the usual speed-versus-overfit trade-off.",
+      "alternatives_considered": [
+        "random_forest - same axis-aligned staircase bias as gradient_boosting and screened 0.012 lower; a second staircase would not add a new failure mode.",
+        "decision_tree - a single unbagged tree is the same staircase with higher variance, screened at 0.8582 well below the floor.",
+        "logistic_regression - linear bias, screened 0.8434; if the boundary is genuinely curved it is the wrong shape."
+      ]
+    }
+  ],
+  "validation": {
+    "unit": "row",
+    "strategy": "stratified_kfold",
+    "test_size": 0.2,
+    "val_fraction": 0.2,
+    "n_splits": 5,
+    "gap": null,
+    "group_column": null,
+    "time_column": null,
+    "reason": "structure.json finds no entity key (all 33 candidates are in the feature set, rows_per_value_mean near 1, lifts withheld or near 1) and no time column, so rows are independent and the unit is the row. Stratified 5-fold is chosen over a holdout because the grids hold 18 and 8 combinations: one split would overfit the choice, while 5-fold averages five estimates, validates every rare row once and leaves the final fit on the whole pool. test_size 0.2 holds out 71 rows for the final comparison.",
+    "alternatives_considered": [
+      "holdout with val_fraction 0.2 - rejected: a single 56-row validation split is a noisy basis for choosing among 18 SVM combinations and 8 boosting combinations.",
+      "stratified_kfold with n_splits 10 - rejected: the pool's rare class fits it, but 10 folds would put roughly 10 b rows per estimate and cost twice the fitting for little extra stability.",
+      "temporal or grouped strategies - rejected: structure.json finds no timestamp and no entity key, so there is no order or group to preserve."
+    ]
+  },
+  "tuning": {
+    "metric": "f1_macro",
+    "final_fit_scope": "pool",
+    "final_fit_reason": "Under 5-fold every pool row is validated against exactly once before selection, so holding train or validation back from the final fit would discard data for nothing; the 71 test rows stay untouched either way.",
+    "reason": "The search is scored on f1_macro to match the headline metric: both classes matter and the 1.79:1 split would let accuracy reward a model that under-detects b.",
+    "alternatives_considered": [
+      "accuracy - rejected as the search objective: on this class balance it is dominated by the majority class and can hide poor b recall.",
+      "roc_auc / pr_auc - not available to the scorer and threshold-free, so they cannot rank the hyperparameter candidates the way the headline claim needs."
+    ]
+  },
+  "primary_metric": {
+    "name": "f1_macro",
+    "rejected": "accuracy",
+    "reason": "The task is to separate good (g) from bad (b) radar returns; the classes are uneven (225:126, 1.79:1) and both error types matter, so a metric that weights each class equally and balances precision and recall per class is the honest headline. The rarest class has 126 rows, enough to estimate macro-F1 stably, and f1_macro is also what the search optimised, so selection and reporting use one ruler.",
+    "rejected_reason": "dominated by the 64% majority g; an all-g predictor already reaches about 0.64."
+  },
+  "report": {
+    "student_id": "G2606362G",
+    "student_name": "NI QIXIN",
+    "variant": "Variant-2",
+    "model_version": "deepseek/deepseek-flash",
+    "harness": "Agent Harness such as opencode 1.18.34",
+    "repository": "https://github.com/NIQIXINNN/IN6227-assignment",
+    "dataset_label": "IN6227 A1 Variant 2 - ionosphere.csv (351 rows, 34 features, target class)"
+  },
+  "narrative": {
+    "candidate_models": "candidate_screen.json fitted all seven families on the same 280-row pool. SVM led (f1_macro 0.9189), then gradient boosting (0.9158) and random forest (0.9039); decision tree (0.8582), naive Bayes (0.8570), logistic regression (0.8434) and KNN (0.7677) fell below the one-standard-deviation floor and are eliminated on their measured defaults. Only svm+gradient_boosting and svm+random_forest differ in bias. SVM gives the kernel margin, suited to 34 standardised attributes and a locally separable b class (lift 1.89); gradient boosting takes the staircase slot over the lower-screened forest, since a second staircase adds no new failure mode.",
+    "feature_engineering": "None constructed: the 34 attributes are already normalised radar measurements, there are no missing values or categorical columns, and the constant and binary columns are neither identifier-like nor removed.",
+    "cleaning_why": [
+      {"issue": "No missing values", "action": "no imputation by hand; flag true (0 rows)", "why": "imputation stays inside each fold; nothing is missing."},
+      {"issue": "Constant column attr_1", "action": "kept", "why": "no variance to leak or split on."},
+      {"issue": "One duplicated row", "action": "kept", "why": "plausible coincidence; contradicted_rows 0."},
+      {"issue": "Heavy-tailed values", "action": "keep all rows (no IQR)", "why": "b is the anomalous class, so filtering deletes signal."}
+    ],
+    "validation_argument": "structure.json finds no entity key and no time column, so rows are independent and the unit is the row. Stratified 5-fold beats a holdout here because the grids hold 18 and 8 combinations: one split would overfit the choice, while 5-fold averages five estimates, validates every rare row once, and leaves the final fit on the whole pool. test_size 0.2 holds out 71 rows for the final comparison.",
+    "primary_metric_argument": "Tell good from bad radar returns; the split is uneven at 225:126 and both errors matter, so classes are weighted equally, and 126 rare rows make a macro average estimable. f1_macro is both headline and search objective, so selection and reporting share one ruler. Accuracy is rejected: the 64% majority dominates it.",
+    "performance_comparison": "On the same 71 test rows, gradient boosting edged the SVM (f1_macro 0.9371 vs 0.9247; accuracy 0.9437 vs 0.9296) despite losing cross-validation (0.9242 vs 0.9460) - 71 rows is a coarse estimate. The SVM caught more b (24/25, recall 0.96) but made 4 g false positives; gradient boosting was more balanced (b recall 0.88, precision 0.96) with 4 total errors against 5. One or two rows separate them, inside the noise floor.",
+    "limitations": "351 rows over 34 features makes the test estimate coarse: one flipped prediction moves macro-F1 by over a point and the test holds only 25 b rows. The single CSV was split internally, so no population shift is tested. The b class is real but locally separable, which can flatter the aggregate."
+  }
+}

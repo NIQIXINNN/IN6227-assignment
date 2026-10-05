@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "dataset": "C:/Users/86180/Desktop/IN6227/datasets-extra/mice_protein.csv",
+  "test_dataset": null,
+  "seed": 42,
+  "target": {
+    "column": "class",
+    "reason": "The only column whose name matches the target convention, and the only 8-class discrete column. Genotype, Treatment and Behaviour are 2-class columns that jointly define class (class = genotype x behaviour x treatment), so they are components of the label rather than rival targets.",
+    "alternatives_considered": [
+      "Genotype (2 classes) - rejected: a factor of class, so it answers a strictly easier question",
+      "Treatment (2 classes) - rejected: a factor of class, not the intended 8-group outcome",
+      "Behaviour (2 classes) - rejected: a factor of class, not the intended 8-group outcome",
+      "MouseID - rejected: one distinct value per row, an identifier"
+    ]
+  },
+  "cleaning": {
+    "drop_columns": ["MouseID", "mouse_id", "Genotype", "Treatment", "Behavior"],
+    "drop_rows_with_missing_label": true,
+    "rarest_class_action": "keep",
+    "outlier_policy": {"method": "keep"},
+    "reason": "MouseID and mouse_id are identifiers - MouseID is unique per row, mouse_id repeats 15x and is the entity key. Genotype, Treatment and Behavior deterministically define class, so keeping them would leak the label; the first row-level screen returned perfect scores because of them. Protein values are ratio measurements on a common scale, so extreme readings are kept as possible signal. Missing feature values are imputed inside the pipeline and never by hand.",
+    "alternatives_considered": [
+      "Keep Genotype/Treatment/Behavior as features - rejected: class is their cross-product, so the task becomes trivial",
+      "Keep mouse_id as a feature - rejected: an entity key used for grouping tells the model the answer then tests on it",
+      "IQR outlier filtering - rejected: discards extreme protein responses that can distinguish treatment groups",
+      "Drop or merge the rarest class - rejected: t-CS-s is meaningful, with zero duplicates, zero contradictions and local lift 10.4"
+    ]
+  },
+  "models": [
+    {
+      "family": "logistic_regression",
+      "scale": true,
+      "scale_reason": "generally recommended, close to required in practice - a shared L2 penalty compares coefficients, so units matter",
+      "stopping": "lbfgs, max_iter=2000, tol=1e-4; no early stop",
+      "overfitting_control": "L2 penalty; C tuned 0.1-10",
+      "grid": {"C": [0.1, 1.0, 10.0], "class_weight": [null, "balanced"]},
+      "reason": "Highest honest screen mean (f1_macro 0.543, SD 0.051) and the only linear-in-the-log-odds family, so it forms one half of a maximum-contrast pair; its signed coefficients over 77 protein assays are readable. The grid searches regularisation strength, the axis that matters with 77 correlated columns and 855 pool rows, and class_weight balances the classes under a macro-F1 objective.",
+      "alternatives_considered": [
+        "random_forest (0.472, third) - rejected: below the one-SD floor and same staircase bias as the tree families",
+        "gradient_boosting (0.416) and decision_tree (0.376) - rejected: same bias and clearly behind",
+        "naive_bayes (0.392) - rejected: independence assumption violated by 77 correlated assays",
+        "knn (0.371) - rejected: lowest screen mean; distance concentration across 77 columns"
+      ]
+    },
+    {
+      "family": "svm",
+      "scale": true,
+      "scale_reason": "generally recommended, close to required for an RBF kernel - the margin is a distance",
+      "stopping": "libsvm QP to tol=1e-3, max_iter=-1",
+      "overfitting_control": "maximal margin, RBF; C and gamma tuned",
+      "grid": {"C": [0.1, 1.0, 10.0], "gamma": ["scale", 0.001, 0.01]},
+      "reason": "Second on the honest screen (f1_macro 0.528) and inside the shortlist; its kernel-margin bias differs from the linear model, so the pair probes two boundary shapes. C and gamma decide how tightly the RBF boundary wraps the training mice.",
+      "alternatives_considered": [
+        "logistic_regression as the second model - rejected: already the first entry; two of one family cannot contrast bias",
+        "random_forest - rejected: below the one-SD floor on this protocol",
+        "naive_bayes - rejected: outside the shortlist and a violated independence assumption",
+        "gradient_boosting - rejected: outside the shortlist and a repeated staircase bias"
+      ]
+    }
+  ],
+  "validation": {
+    "unit": "entity",
+    "strategy": "stratified_group_kfold",
+    "test_size": 0.2,
+    "val_fraction": 0.2,
+    "n_splits": 3,
+    "gap": null,
+    "group_column": "mouse_id",
+    "time_column": null,
+    "reason": "Rows are not independent: 1080 rows are 72 mice measured 15 times each, and mouse_id has a nearest-neighbour same-value share of 0.994 (lift 76.6). A row-level split puts one mouse on both sides and scores recognition, which is what the first screen's near-perfect scores were. Grouping by mouse_id with stratified_group_kfold keeps every mouse whole and the class proportions intact. The rarest class t-CS-s is 7 mice; after the 20% grouped test holdout 5 remain in the pool, so each of 3 folds validates one mouse (15 rows) of that class - all eight classes appear in every fold. Three folds average three estimates and the final model refits on the whole pool; 5 folds would leave a fold with a single rare mouse.",
+    "alternatives_considered": [
+      "row / stratified_kfold - rejected: leaks mice across the boundary and produced the misleading 1.0 scores",
+      "grouped_holdout - rejected: one estimate on about 19 mice is noisier than three entity-disjoint folds",
+      "5 folds - rejected: with only 5 t-CS-s mice in the pool a fold would hold a single rare mouse",
+      "temporal split - rejected: no time column exists"
+    ]
+  },
+  "tuning": {
+    "metric": "f1_macro",
+    "final_fit_scope": "pool",
+    "final_fit_reason": "Under 3-fold entity CV every pool mouse is validated against exactly once, so refitting on the whole pool uses all non-test mice without touching the grouped test set.",
+    "reason": "f1_macro matches the primary metric: all eight groups matter equally, so the search is tuned on the same ruler the report leads with.",
+    "alternatives_considered": [
+      "accuracy - rejected: dominated by the largest classes and would tune toward ignoring t-CS-s",
+      "final_fit_scope train+validation - rejected: under k-fold it discards validation rows for no gain"
+    ]
+  },
+  "primary_metric": {
+    "name": "f1_macro",
+    "reason": "Objective: assign each sample to one of eight experimental groups with no single class as the positive of interest, and a misassignment between adjacent groups costs the same, so classes should weigh equally. Distribution: 105-150 rows each (ratio 1.43) and each of the three folds contains all eight classes, so macro-F1 is estimable and exposes failure on the 105-row t-CS-s.",
+    "rejected": "accuracy",
+    "rejected_reason": "Accuracy is majority-weighted; a model that never predicts t-CS-s could still score near 0.9, hiding exactly the failure a classifier of a rare experimental group must not hide."
+  },
+  "report": {
+    "student_id": "G2606362G",
+    "student_name": "NI QIXIN",
+    "variant": "Variant-2",
+    "model_version": "deepseek/deepseek-flash",
+    "harness": "Agent Harness such as opencode 1.18.34",
+    "repository": "https://github.com/NIQIXINNN/IN6227-assignment",
+    "dataset_label": "IN6227 A1 Variant 2 - mice_protein.csv (1,080 rows; 72 mice, 8 classes)"
+  },
+  "narrative": {
+    "candidate_models": "The task is to recover the eight-way class from 77 protein measurements. The frame's Genotype, Treatment and Behavior define class exactly; an initial row-level screen including them scored f1_macro 1.000 - leakage, not skill. Holding those out and grouping on mouse_id, the seven families screen entity-disjointly as logistic_regression 0.543, svm 0.528, random_forest 0.472, gradient_boosting 0.416, naive_bayes 0.392, decision_tree 0.376, knn 0.371. The one-SD shortlist is logistic_regression + svm - the only pair in it with different inductive biases (linear log-odds against an RBF margin), so that pair is taken.",
+    "feature_engineering": "No features were built: the 77 columns are already normalised protein ratios, and ratios or interactions would multiply a 77-wide, 72-entity design that the RBF kernel and L2 penalty already partly absorb. The model sees 77 numeric features.",
+    "cleaning_why": [
+      {"issue": "Genotype/Treatment/Behavior define class; mouse_id repeats 15x", "action": "all held out of features; mouse_id used as group_column", "why": "class is their cross-product (a screen with them scored 1.000) and an entity key is not a predictor."},
+      {"issue": "1,396 missing cells; 7-mouse rarest class; heavy tails", "action": "in-pipeline imputation; class and outliers kept", "why": "imputation fitted per fold; the class is real (lift 10.4) and extreme ratios can be signal."}
+    ],
+    "validation_argument": "The split unit is the mouse: 1080 rows are 72 mice x 15, and sharing a mouse_id makes rows near-identical (nearest-neighbour share 0.994, lift 76.6), so a row split would reward recognition - the first screen's perfect scores. stratified_group_kfold on mouse_id keeps whole mice on one side with class proportions kept. The rarest class t-CS-s has 7 mice; after the 20% grouped test holdout 5 remain, so each of three folds validates one mouse (15 rows) of it, all eight classes appear per fold, and no mouse is shared.",
+    "primary_metric_argument": "f1_macro: assign samples to eight groups with none the special positive and equal cost for adjacent-group swaps, so classes should weigh equally. The classes are 105-150 rows (ratio 1.43), so accuracy would let a model ignore t-CS-s, and all eight appear in every fold.",
+    "performance_comparison": "The SVM leads on every headline metric: f1_macro 0.590 vs 0.581, accuracy 0.676 vs 0.653, macro ROC-AUC 0.941 vs 0.932. The linear model is steadier fold-to-fold (screen SD 0.051 vs 0.073) but confuses c-CS-m with c-CS-s; the RBF boundary separates the c-SC/t-SC groups exactly and lifts c-CS-m recall to 0.60 at the cost of more t-CS-s misroutes.",
+    "limitations": "The estimate rests on 72 mice, not 1,080 independent rows: the rarest class is 7 mice, so one mouse crossing a fold moves its recall by up to one seventh, and the ~14-mouse test holdout may rest a class on one animal. Correlated, heavy-tailed protein columns make the linearity and distance assumptions approximate, so the comparison is descriptive rather than causal."
+  }
+}

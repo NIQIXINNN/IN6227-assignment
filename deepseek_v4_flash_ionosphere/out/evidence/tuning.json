@@ -1,0 +1,97 @@
+{
+  "metric": "f1_macro",
+  "protocol": "5-fold cross-validation over the 280 pool rows, scored on f1_macro",
+  "final_fit_scope": "pool",
+  "final_fit_rows": 280,
+  "models": {
+    "svm": {
+      "family": "svm",
+      "best_params": {
+        "clf__kernel": "rbf",
+        "clf__C": 10,
+        "clf__gamma": 0.1
+      },
+      "grid": {
+        "kernel": [
+          "rbf",
+          "linear"
+        ],
+        "C": [
+          1,
+          10,
+          100
+        ],
+        "gamma": [
+          "scale",
+          0.1,
+          0.01
+        ]
+      },
+      "best_score": 0.946031746031746,
+      "n_combinations": 18,
+      "scores": {
+        "clf__kernel='rbf'|clf__C=1|clf__gamma='scale'": 0.919941,
+        "clf__kernel='rbf'|clf__C=1|clf__gamma=0.1": 0.942011,
+        "clf__kernel='rbf'|clf__C=1|clf__gamma=0.01": 0.90109,
+        "clf__kernel='rbf'|clf__C=10|clf__gamma='scale'": 0.927991,
+        "clf__kernel='rbf'|clf__C=10|clf__gamma=0.1": 0.946032,
+        "clf__kernel='rbf'|clf__C=10|clf__gamma=0.01": 0.932221,
+        "clf__kernel='rbf'|clf__C=100|clf__gamma='scale'": 0.923738,
+        "clf__kernel='rbf'|clf__C=100|clf__gamma=0.1": 0.941722,
+        "clf__kernel='rbf'|clf__C=100|clf__gamma=0.01": 0.910888,
+        "clf__kernel='linear'|clf__C=1|clf__gamma='scale'": 0.868926,
+        "clf__kernel='linear'|clf__C=1|clf__gamma=0.1": 0.868926,
+        "clf__kernel='linear'|clf__C=1|clf__gamma=0.01": 0.868926,
+        "clf__kernel='linear'|clf__C=10|clf__gamma='scale'": 0.858693,
+        "clf__kernel='linear'|clf__C=10|clf__gamma=0.1": 0.858693,
+        "clf__kernel='linear'|clf__C=10|clf__gamma=0.01": 0.858693,
+        "clf__kernel='linear'|clf__C=100|clf__gamma='scale'": 0.846329,
+        "clf__kernel='linear'|clf__C=100|clf__gamma=0.1": 0.846329,
+        "clf__kernel='linear'|clf__C=100|clf__gamma=0.01": 0.846329
+      },
+      "metric": "f1_macro",
+      "scale": true
+    },
+    "gradient_boosting": {
+      "family": "gradient_boosting",
+      "best_params": {
+        "clf__n_estimators": 100,
+        "clf__learning_rate": 0.05,
+        "clf__max_depth": 3
+      },
+      "grid": {
+        "n_estimators": [
+          100,
+          200
+        ],
+        "learning_rate": [
+          0.05,
+          0.1
+        ],
+        "max_depth": [
+          2,
+          3
+        ]
+      },
+      "best_score": 0.9241777896350769,
+      "n_combinations": 8,
+      "scores": {
+        "clf__n_estimators=100|clf__learning_rate=0.05|clf__max_depth=2": 0.923707,
+        "clf__n_estimators=100|clf__learning_rate=0.05|clf__max_depth=3": 0.924178,
+        "clf__n_estimators=100|clf__learning_rate=0.1|clf__max_depth=2": 0.916004,
+        "clf__n_estimators=100|clf__learning_rate=0.1|clf__max_depth=3": 0.924069,
+        "clf__n_estimators=200|clf__learning_rate=0.05|clf__max_depth=2": 0.916004,
+        "clf__n_estimators=200|clf__learning_rate=0.05|clf__max_depth=3": 0.916822,
+        "clf__n_estimators=200|clf__learning_rate=0.1|clf__max_depth=2": 0.91634,
+        "clf__n_estimators=200|clf__learning_rate=0.1|clf__max_depth=3": 0.924069
+      },
+      "metric": "f1_macro",
+      "scale": false
+    }
+  },
+  "_evidence": {
+    "type": "tuning",
+    "schema_version": 1,
+    "producer": "driver"
+  }
+}
