@@ -1,0 +1,44 @@
+{
+  "label": "label",
+  "n_rows_loaded": 31112,
+  "rows_dropped_missing_label": 3,
+  "rows_dropped_duplicate_rarest": 0,
+  "rows_dropped_outliers": 0,
+  "outlier_policy": {
+    "method": "keep"
+  },
+  "rarest_class_action": "keep",
+  "n_rows_modelled": 31109,
+  "n_features_modelled": 15,
+  "numeric_features": [
+    "aptitude_score",
+    "performance_score",
+    "stability_index",
+    "load_ratio",
+    "index_weight",
+    "activity_duration",
+    "composite_rank"
+  ],
+  "categorical_features": [
+    "geological_era",
+    "weather_pattern",
+    "region",
+    "personal_interest",
+    "brew_preference",
+    "instrument",
+    "species",
+    "mineral_type"
+  ],
+  "columns_excluded": [],
+  "columns_dropped_id_like": [],
+  "test_file": {
+    "path": "C:\\Users\\86180\\Desktop\\IN6227\\dataset\\test.csv",
+    "n_rows_loaded": 13334,
+    "n_rows_modelled": 13333
+  },
+  "_evidence": {
+    "type": "cleaning",
+    "schema_version": 1,
+    "producer": "driver"
+  }
+}

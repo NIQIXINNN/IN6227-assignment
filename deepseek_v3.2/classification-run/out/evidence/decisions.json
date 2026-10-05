@@ -1,0 +1,124 @@
+{
+  "_evidence": {
+    "type": "decisions",
+    "schema_version": 1,
+    "producer": "DecisionLog"
+  },
+  "n_decisions": 8,
+  "steps_covered": [
+    "cleaning",
+    "final_fit",
+    "label",
+    "metrics",
+    "model_selection",
+    "preprocessing",
+    "validation"
+  ],
+  "decisions": [
+    {
+      "step": "label",
+      "decision": "target column",
+      "choice": "label",
+      "reason": "Column named 'label' with two categories (yes/no), clear classification task.",
+      "alternatives_considered": [
+        "No other plausible target columns - all other columns have high cardinality or numeric values."
+      ],
+      "inputs": {
+        "n_classes_hint": "see eda.json"
+      }
+    },
+    {
+      "step": "cleaning",
+      "decision": "cleaning policy",
+      "choice": "keep outliers; drop rows with no label; rarest class: keep; no columns excluded",
+      "reason": "Missing values are minimal (0.01%). No columns appear to be identifiers. Rarest class 'yes' appears valid (7,464 samples, 24% of data). No obvious outliers to remove.",
+      "alternatives_considered": [
+        "drop_rows_with_missing_label=false: would impute missing labels but imputing labels invents answers"
+      ],
+      "inputs": {
+        "drop_columns": []
+      }
+    },
+    {
+      "step": "model_selection",
+      "decision": "the two families",
+      "choice": "gradient_boosting and logistic_regression",
+      "reason": "gradient_boosting: Shortlist leader with 0.7665 f1_macro, handles high-cardinality categoricals well, robust to heterogeneous features. logistic_regression: Second in shortlist (0.7649), complementary linear bias, interpretable coefficients, handles class imbalance through weighting.",
+      "alternatives_considered": [
+        "random_forest: similar performance (0.7572) but more bias similarity with gradient_boosting",
+        "svm: 0.7587 but requires scaling and sensitive to kernel choice",
+        "svm: similar linear bias but more complex tuning",
+        "knn: 0.7469, distance-based but sensitive to high cardinality features"
+      ],
+      "inputs": {
+        "families": [
+          "gradient_boosting",
+          "logistic_regression"
+        ],
+        "stopping": {
+          "gradient_boosting": "early stopping on validation loss with 10-round patience",
+          "logistic_regression": "L-BFGS solver with default tol=1e-4 and max_iter=100"
+        }
+      }
+    },
+    {
+      "step": "preprocessing",
+      "decision": "scaling, per model",
+      "choice": "gradient_boosting: scale=False; logistic_regression: scale=True",
+      "reason": "gradient_boosting: not required - tree-based methods are scale-invariant logistic_regression: effectively required - linear models are sensitive to feature scales",
+      "alternatives_considered": [
+        "gradient_boosting with scale=True - the registry's stated preference for this family is in reference.md section 3",
+        "logistic_regression with scale=False - the registry's stated preference for this family is in reference.md section 3"
+      ],
+      "inputs": {}
+    },
+    {
+      "step": "validation",
+      "decision": "how validation is formed",
+      "choice": "row-unit; stratified_kfold; n_splits=5; test_size=0.2; val_fraction=0.2",
+      "reason": "Rows are independent (no detected entity groups). 5-fold stratified CV balances rare class representation (~1,493 'yes' per fold). K-fold provides stability for hyperparameter selection with imbalanced data.",
+      "alternatives_considered": [
+        "holdout: simpler but single estimate less stable for rare class",
+        "3-fold: fewer folds but larger per-fold rare count (~2,488)"
+      ],
+      "inputs": {
+        "unit": "row",
+        "strategy": "stratified_kfold"
+      }
+    },
+    {
+      "step": "metrics",
+      "decision": "tuning metric",
+      "choice": "f1_macro",
+      "reason": "Class imbalance (3.2:1 ratio) makes f1_macro more appropriate than accuracy.",
+      "alternatives_considered": [
+        "accuracy: misleading with class imbalance",
+        "precision: focuses on positive predictions but ignores recall"
+      ],
+      "inputs": {}
+    },
+    {
+      "step": "metrics",
+      "decision": "primary metric",
+      "choice": "f1_macro",
+      "reason": "Critical to balance precision and recall for minority class 'yes' in imbalanced dataset.",
+      "alternatives_considered": [
+        "accuracy - Accuracy misleading with 76% majority class; could achieve 76% by always predicting 'no'."
+      ],
+      "inputs": {}
+    },
+    {
+      "step": "final_fit",
+      "decision": "what the final model is fitted on",
+      "choice": "pool",
+      "reason": "With kfold validation, all non-test data is seen exactly once during validation, so using pool maximizes training data.",
+      "alternatives_considered": [
+        "train - the scopes differ in how much data the final fit sees and, for 'pool', in whether the test estimate is still untouched by selection",
+        "train+validation - the scopes differ in how much data the final fit sees and, for 'pool', in whether the test estimate is still untouched by selection"
+      ],
+      "inputs": {
+        "final_fit_scope": "pool"
+      }
+    }
+  ]
+}

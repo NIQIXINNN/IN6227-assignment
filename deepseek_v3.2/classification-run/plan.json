@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "dataset": "C:\\Users\\86180\\Desktop\\IN6227\\dataset\\train.csv",
+  "test_dataset": "C:\\Users\\86180\\Desktop\\IN6227\\dataset\\test.csv",
+  "seed": 42,
+  "target": {
+    "column": "label",
+    "reason": "Column named 'label' with two categories (yes/no), clear classification task.",
+    "alternatives_considered": ["No other plausible target columns - all other columns have high cardinality or numeric values."]
+  },
+  "cleaning": {
+    "drop_columns": [],
+    "drop_rows_with_missing_label": true,
+    "rarest_class_action": "keep",
+    "outlier_policy": {
+      "method": "keep"
+    },
+    "reason": "Missing values are minimal (0.01%). No columns appear to be identifiers. Rarest class 'yes' appears valid (7,464 samples, 24% of data). No obvious outliers to remove.",
+    "alternatives_considered": ["drop_rows_with_missing_label=false: would impute missing labels but imputing labels invents answers"]
+  },
+  "models": [
+    {
+      "family": "gradient_boosting",
+      "grid": {
+        "n_estimators": [100, 200],
+        "learning_rate": [0.01, 0.1],
+        "max_depth": [3, 5]
+      },
+      "scale": false,
+      "scale_reason": "not required - tree-based methods are scale-invariant",
+      "stopping": "early stopping on validation loss with 10-round patience",
+      "overfitting_control": "learning rate shrinkage, tree depth limit, feature sampling",
+      "reason": "Shortlist leader with 0.7665 f1_macro, handles high-cardinality categoricals well, robust to heterogeneous features.",
+      "alternatives_considered": ["random_forest: similar performance (0.7572) but more bias similarity with gradient_boosting", "svm: 0.7587 but requires scaling and sensitive to kernel choice"]
+    },
+    {
+      "family": "logistic_regression",
+      "grid": {
+        "C": [0.01, 0.1, 1.0, 10.0],
+        "penalty": ["l2"]
+      },
+      "scale": true,
+      "scale_reason": "effectively required - linear models are sensitive to feature scales",
+      "stopping": "L-BFGS solver with default tol=1e-4 and max_iter=100",
+      "overfitting_control": "L2 regularization determined by C parameter",
+      "reason": "Second in shortlist (0.7649), complementary linear bias, interpretable coefficients, handles class imbalance through weighting.",
+      "alternatives_considered": ["svm: similar linear bias but more complex tuning", "knn: 0.7469, distance-based but sensitive to high cardinality features"]
+    }
+  ],
+  "validation": {
+    "unit": "row",
+    "strategy": "stratified_kfold",
+    "group_column": null,
+    "time_column": null,
+    "n_splits": 5,
+    "test_size": 0.2,
+    "val_fraction": 0.2,
+    "reason": "Rows are independent (no detected entity groups). 5-fold stratified CV balances rare class representation (~1,493 'yes' per fold). K-fold provides stability for hyperparameter selection with imbalanced data.",
+    "alternatives_considered": ["holdout: simpler but single estimate less stable for rare class", "3-fold: fewer folds but larger per-fold rare count (~2,488)"]
+  },
+  "tuning": {
+    "metric": "f1_macro",
+    "reason": "Class imbalance (3.2:1 ratio) makes f1_macro more appropriate than accuracy.",
+    "final_fit_scope": "pool",
+    "final_fit_reason": "With kfold validation, all non-test data is seen exactly once during validation, so using pool maximizes training data.",
+    "alternatives_considered": ["accuracy: misleading with class imbalance", "precision: focuses on positive predictions but ignores recall"]
+  },
+  "primary_metric": {
+    "name": "f1_macro",
+    "reason": "Critical to balance precision and recall for minority class 'yes' in imbalanced dataset.",
+    "rejected": "accuracy",
+    "rejected_reason": "Accuracy misleading with 76% majority class; could achieve 76% by always predicting 'no'."
+  },
+  "report": {
+    "student_id": "G2606362G",
+    "student_name": "NIQIXIN",
+    "variant": "variant-2",
+    "repository": "https://github.com/NIQIXINNN/IN6227-assignment",
+    "model_version": "deepseek-ai/DeepSeek-V3.2",
+    "harness": "opencode 0.1.0",
+    "dataset_label": "IN6227 Classification Dataset - train.csv (31,112 rows) / test.csv (13,334 rows)"
+  },
+  "narrative": {
+    "candidate_models": "Screen tested 7 families on 15,000 subsampled rows. Shortlist by f1_macro: gradient_boosting (0.7665 ±0.0053) and logistic_regression (0.7649 ±0.0054). These represent complementary biases: axis-aligned staircase vs. linear decision boundaries. Eliminated: svm (0.7587), random_forest (0.7572), knn (0.7469), decision_tree (0.6956), naive_bayes (0.6631).",
+    "feature_engineering": "No engineered features. 7 numeric features standardized for linear models; 8 categorical features one-hot encoded (82 columns total). High-cardinality 'region' (21 categories) handled via encoding.",
+    "cleaning_why": [
+      {
+        "issue": "Missing labels",
+        "action": "Dropped 3 rows",
+        "why": "Cannot train or validate without known label"
+      },
+      {
+        "issue": "Minimal missing values (0.01%)",
+        "action": "Pipeline imputation",
+        "why": "Impute inside folds to prevent data leakage"
+      }
+    ],
+    "validation_argument": "Rows are independent (no detected entity groups). 5-fold stratified CV balances rare class representation (≈1,493 'yes' per fold vs. ≈4,742 'yes' in holdout). K-fold provides stability estimate for hyperparameter selection with imbalanced data.",
+    "primary_metric_argument": "Task: predict 'yes' class (24%). Classes uneven (3.2:1). Error cost: false negatives likely more costly than false positives. Validation supports macro-averaging. f1_macro weights both classes equally.",
+    "performance_comparison": "Gradient boosting expected to capture complex interactions; logistic regression offers linear transparency. Key difference: gradient_boosting may better handle feature interactions; logistic regression may be more stable with limited data.",
+    "limitations": "Test set provided as separate file, not used for validation. 'yes' class size (7,464) supports 5-fold CV but leaves thin per-fold estimates. High-dimensional one-hot encoding (82 columns) may introduce sparsity. No cross-validation on test set, so generalization estimate limited to provided test split."
+  }
+}

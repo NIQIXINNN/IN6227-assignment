@@ -1,0 +1,255 @@
+{
+  "protocol": {
+    "unit": "row",
+    "strategy": "stratified_kfold",
+    "group_column": null,
+    "time_column": null,
+    "why": "structure.json reports 15 group candidate(s) and the closest was `mineral_type` (1944.5 rows per value, lift 5.2), rejected because it is one of the model's features - a column that predicts the label makes rows sharing a value resemble each other without them belonging together, so rows are treated as independent",
+    "folds": 3,
+    "seed": 42,
+    "metrics": [
+      "f1_macro",
+      "accuracy"
+    ]
+  },
+  "n_pool": 24887,
+  "n_screened": 15000,
+  "subsampled": true,
+  "one_hot_width": 82,
+  "families": [
+    {
+      "family": "decision_tree",
+      "scaling_used": false,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.695868,
+          0.696976,
+          0.69394
+        ],
+        "accuracy": [
+          0.7776,
+          0.7734,
+          0.7748
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.695595,
+        "accuracy": 0.775267
+      },
+      "std": {
+        "f1_macro": 0.001254,
+        "accuracy": 0.001746
+      }
+    },
+    {
+      "family": "gradient_boosting",
+      "scaling_used": false,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.770298,
+          0.77025,
+          0.759065
+        ],
+        "accuracy": [
+          0.8454,
+          0.8438,
+          0.8374
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.766538,
+        "accuracy": 0.8422
+      },
+      "std": {
+        "f1_macro": 0.005284,
+        "accuracy": 0.003456
+      }
+    },
+    {
+      "family": "knn",
+      "scaling_used": true,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.745854,
+          0.752938,
+          0.741842
+        ],
+        "accuracy": [
+          0.818,
+          0.8226,
+          0.8174
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.746878,
+        "accuracy": 0.819333
+      },
+      "std": {
+        "f1_macro": 0.004587,
+        "accuracy": 0.002323
+      }
+    },
+    {
+      "family": "logistic_regression",
+      "scaling_used": true,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.770468,
+          0.766504,
+          0.757666
+        ],
+        "accuracy": [
+          0.844,
+          0.8412,
+          0.8364
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.764879,
+        "accuracy": 0.840533
+      },
+      "std": {
+        "f1_macro": 0.005351,
+        "accuracy": 0.003138
+      }
+    },
+    {
+      "family": "naive_bayes",
+      "scaling_used": false,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.668927,
+          0.648743,
+          0.671511
+        ],
+        "accuracy": [
+          0.6926,
+          0.67,
+          0.6956
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.663061,
+        "accuracy": 0.686067
+      },
+      "std": {
+        "f1_macro": 0.010179,
+        "accuracy": 0.011427
+      }
+    },
+    {
+      "family": "random_forest",
+      "scaling_used": false,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.755714,
+          0.764381,
+          0.75136
+        ],
+        "accuracy": [
+          0.8332,
+          0.8388,
+          0.8322
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.757152,
+        "accuracy": 0.834733
+      },
+      "std": {
+        "f1_macro": 0.005412,
+        "accuracy": 0.002904
+      }
+    },
+    {
+      "family": "svm",
+      "scaling_used": true,
+      "n_folds": 3,
+      "per_fold": {
+        "f1_macro": [
+          0.759427,
+          0.762736,
+          0.753982
+        ],
+        "accuracy": [
+          0.843,
+          0.8414,
+          0.8372
+        ]
+      },
+      "mean": {
+        "f1_macro": 0.758715,
+        "accuracy": 0.840533
+      },
+      "std": {
+        "f1_macro": 0.003609,
+        "accuracy": 0.002446
+      }
+    }
+  ],
+  "excluded_without_fitting": [],
+  "errored": [],
+  "shortlist": {
+    "f1_macro": [
+      "gradient_boosting",
+      "logistic_regression"
+    ],
+    "accuracy": [
+      "gradient_boosting",
+      "logistic_regression",
+      "svm"
+    ]
+  },
+  "bias": {
+    "decision_tree": "axis-aligned staircase",
+    "gradient_boosting": "axis-aligned staircase",
+    "knn": "local similarity",
+    "logistic_regression": "linear in the log-odds",
+    "naive_bayes": "per-column independence",
+    "random_forest": "axis-aligned staircase",
+    "svm": "kernel margin"
+  },
+  "pairs_with_different_bias": {
+    "f1_macro": [
+      [
+        "gradient_boosting",
+        "logistic_regression"
+      ]
+    ],
+    "accuracy": [
+      [
+        "gradient_boosting",
+        "logistic_regression"
+      ],
+      [
+        "gradient_boosting",
+        "svm"
+      ],
+      [
+        "logistic_regression",
+        "svm"
+      ]
+    ]
+  },
+  "shortlist_rule": "every family whose mean is within one standard deviation of the best mean on that metric - wider than it looks, and deliberately so: it is here to exclude what is clearly behind, not to crown a winner",
+  "how_to_read_this": "These are screening numbers, not the report's numbers. Each family is fitted with its own defaults - no grid - so a family that is merely badly tuned here will look worse than it is. That is why the shortlist is one standard deviation wide and why the pair is taken from it rather than from the top of it. A family under the floor is behind on its own defaults and at its own spread; a family in the shortlist is one this dataset cannot rule out.",
+  "note": "evidence, not a verdict - two families still have to be taken from `shortlist`, differing in inductive bias, and the reason recorded. `pairs_with_different_bias` lists the shortlist combinations that satisfy that; an empty list means no pair inside the shortlist does, and the second family has to come from below the floor. Choosing the top two scores is not the same decision and is not what Step 4 asks for.",
+  "class_names": [
+    "no",
+    "yes"
+  ],
+  "rows_dropped_missing_label": 3,
+  "n_test_held_out": 6222,
+  "test_rows_excluded": "no family was fitted or scored on the test rows - they were split off before the screen started",
+  "_evidence": {
+    "type": "candidate_screen",
+    "schema_version": 1,
+    "producer": "screen"
+  }
+}

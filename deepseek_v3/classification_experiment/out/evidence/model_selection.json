@@ -1,0 +1,41 @@
+{
+  "n_rows": 31112,
+  "n_features": 15,
+  "n_numeric": 7,
+  "n_categorical": 8,
+  "rows_per_feature": 2074.1,
+  "n_classes": 2,
+  "class_counts": {
+    "no": 23645,
+    "yes": 7464
+  },
+  "imbalance_ratio": 3.1679,
+  "rarest_class": "yes",
+  "rarest_rows": 7464,
+  "one_hot_width": 82,
+  "categorical_cardinality": {
+    "geological_era": 5,
+    "weather_pattern": 7,
+    "region": 21,
+    "personal_interest": 11,
+    "brew_preference": 2,
+    "instrument": 6,
+    "species": 7,
+    "mineral_type": 16
+  },
+  "max_cardinality": 21,
+  "median_cardinality": 7.0,
+  "high_cardinality_columns": [
+    "region"
+  ],
+  "constant_columns": [],
+  "near_constant_columns": [],
+  "missing_share": 0.000101,
+  "duplicate_row_share": 0.0,
+  "note": "facts about this dataset's shape, not a ranking. Read them against the capability table from describe_models(), and eliminate a family only for a reason that names one of these numbers (SKILL.md Step 4)",
+  "_evidence": {
+    "type": "model_selection",
+    "schema_version": 1,
+    "producer": "model_selection_evidence"
+  }
+}

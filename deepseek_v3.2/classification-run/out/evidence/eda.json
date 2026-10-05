@@ -1,0 +1,115 @@
+{
+  "_evidence": {
+    "type": "eda",
+    "schema_version": 1,
+    "producer": "profile"
+  },
+  "n_rows": 31112,
+  "n_features": 15,
+  "label_column": "label",
+  "label_reason": "Column named 'label' with two categories (yes/no), clear classification task.",
+  "n_classes": 2,
+  "class_counts": {
+    "no": 23645,
+    "yes": 7464
+  },
+  "imbalance_ratio": 3.167872454448017,
+  "numeric_features": [
+    "aptitude_score",
+    "performance_score",
+    "stability_index",
+    "load_ratio",
+    "index_weight",
+    "activity_duration",
+    "composite_rank"
+  ],
+  "categorical_features": [
+    "geological_era",
+    "weather_pattern",
+    "region",
+    "personal_interest",
+    "brew_preference",
+    "instrument",
+    "species",
+    "mineral_type"
+  ],
+  "dropped_id_like": [],
+  "missing_per_column": {
+    "geological_era": 2,
+    "weather_pattern": 3,
+    "region": 4,
+    "aptitude_score": 4,
+    "performance_score": 2,
+    "stability_index": 2,
+    "personal_interest": 6,
+    "load_ratio": 2,
+    "brew_preference": 7,
+    "instrument": 3,
+    "species": 3,
+    "index_weight": 3,
+    "mineral_type": 3,
+    "activity_duration": 2,
+    "composite_rank": 1,
+    "label": 3
+  },
+  "missing_total": 50,
+  "duplicate_rows": 0,
+  "numeric_summary": {
+    "aptitude_score": {
+      "mean": 342.1344795550984,
+      "std": 68.92508988459974,
+      "min": 90.0,
+      "median": 333.515,
+      "max": 510.0,
+      "skew": -0.2917548055571859
+    },
+    "performance_score": {
+      "mean": 296.49272645451623,
+      "std": 187.62035706419599,
+      "min": 0.0,
+      "median": 275.385,
+      "max": 1010.0,
+      "skew": 0.5523219036131227
+    },
+    "stability_index": {
+      "mean": 3.1564258437801347,
+      "std": 0.849307128860213,
+      "min": 0.0,
+      "median": 3.351,
+      "max": 4.625,
+      "skew": -1.2293277014158863
+    },
+    "load_ratio": {
+      "mean": 24.422677402764386,
+      "std": 9.920133152161371,
+      "min": 0.0,
+      "median": 23.689,
+      "max": 143.717,
+      "skew": 1.705031149053427
+    },
+    "index_weight": {
+      "mean": 12.721826481082644,
+      "std": 7.747198308158069,
+      "min": 0.0,
+      "median": 11.73,
+      "max": 99.62,
+      "skew": 1.5112255303444913
+    },
+    "activity_duration": {
+      "mean": 80.36061780777884,
+      "std": 25.51507972007513,
+      "min": 0.0,
+      "median": 80.33,
+      "max": 205.0,
+      "skew": 0.19918286579107353
+    },
+    "composite_rank": {
+      "mean": 3.2387707884671015,
+      "std": 0.8697835567352963,
+      "min": 0.589,
+      "median": 3.199,
+      "max": 6.876,
+      "skew": 0.2575607048654435
+    }
+  }
+}

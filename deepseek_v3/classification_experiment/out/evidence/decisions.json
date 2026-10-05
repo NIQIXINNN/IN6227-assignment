@@ -1,0 +1,125 @@
+{
+  "_evidence": {
+    "type": "decisions",
+    "schema_version": 1,
+    "producer": "DecisionLog"
+  },
+  "n_decisions": 8,
+  "steps_covered": [
+    "cleaning",
+    "final_fit",
+    "label",
+    "metrics",
+    "model_selection",
+    "preprocessing",
+    "validation"
+  ],
+  "decisions": [
+    {
+      "step": "label",
+      "decision": "target column",
+      "choice": "label",
+      "reason": "This is the binary classification target column identified in the data",
+      "alternatives_considered": [
+        "{'column': 'composite_rank', 'reason': 'Numeric column not suitable as classification target'}",
+        "{'column': 'performance_score', 'reason': 'Continuous numeric column not suitable for classification'}"
+      ],
+      "inputs": {
+        "n_classes_hint": "see eda.json"
+      }
+    },
+    {
+      "step": "cleaning",
+      "decision": "cleaning policy",
+      "choice": "keep outliers; drop rows with no label; rarest class: keep; no columns excluded",
+      "reason": "All rows and columns appear valid for modeling",
+      "alternatives_considered": [
+        "{'action': 'drop_rare_class', 'reason': 'Kept rare class as it appears meaningful and not just noise'}",
+        "{'action': 'impute_missing', 'reason': 'Missing labels cannot be meaningfully imputed'}"
+      ],
+      "inputs": {
+        "drop_columns": []
+      }
+    },
+    {
+      "step": "model_selection",
+      "decision": "the two families",
+      "choice": "gradient_boosting and logistic_regression",
+      "reason": "gradient_boosting: Top performing model in screening with f1_macro of 0.7665 logistic_regression: Close second in screening with f1_macro of 0.7649",
+      "alternatives_considered": [
+        "{'family': 'random_forest', 'reason': 'Similar performance but slightly lower f1_macro (0.7572)'}",
+        "{'family': 'svm', 'reason': 'Lower performance (f1_macro 0.7587) and more computationally expensive'}",
+        "{'family': 'svm', 'reason': 'Similar performance but more complex to tune'}",
+        "{'family': 'naive_bayes', 'reason': 'Much lower performance (f1_macro 0.6631)'}"
+      ],
+      "inputs": {
+        "families": [
+          "gradient_boosting",
+          "logistic_regression"
+        ],
+        "stopping": {
+          "gradient_boosting": "n_estimators with early stopping",
+          "logistic_regression": "convergence tolerance"
+        }
+      }
+    },
+    {
+      "step": "preprocessing",
+      "decision": "scaling, per model",
+      "choice": "gradient_boosting: scale=False; logistic_regression: scale=True",
+      "reason": "gradient_boosting: Tree-based models don't require feature scaling logistic_regression: Required for linear models to perform well",
+      "alternatives_considered": [
+        "gradient_boosting with scale=True - the registry's stated preference for this family is in reference.md section 3",
+        "logistic_regression with scale=False - the registry's stated preference for this family is in reference.md section 3"
+      ],
+      "inputs": {}
+    },
+    {
+      "step": "validation",
+      "decision": "how validation is formed",
+      "choice": "row-unit; stratified_kfold; n_splits=5; test_size=0.2; val_fraction=0.2",
+      "reason": "Standard stratified k-fold validation for balanced class representation",
+      "alternatives_considered": [
+        "{'strategy': 'holdout', 'reason': 'Less reliable for small datasets'}",
+        "{'strategy': 'group_kfold', 'reason': 'No clear grouping column identified'}"
+      ],
+      "inputs": {
+        "unit": "row",
+        "strategy": "stratified_kfold"
+      }
+    },
+    {
+      "step": "metrics",
+      "decision": "tuning metric",
+      "choice": "f1_macro",
+      "reason": "Selected based on screening results showing best performance",
+      "alternatives_considered": [
+        "{'metric': 'accuracy', 'reason': 'Less suitable for potential class imbalance'}"
+      ],
+      "inputs": {}
+    },
+    {
+      "step": "metrics",
+      "decision": "primary metric",
+      "choice": "f1_macro",
+      "reason": "Balanced metric for class-imbalanced data",
+      "alternatives_considered": [
+        "accuracy - Less suitable for imbalanced classification"
+      ],
+      "inputs": {}
+    },
+    {
+      "step": "final_fit",
+      "decision": "what the final model is fitted on",
+      "choice": "train+validation",
+      "reason": "Using all available training data for final model fitting",
+      "alternatives_considered": [
+        "train - the scopes differ in how much data the final fit sees and, for 'pool', in whether the test estimate is still untouched by selection",
+        "pool - the scopes differ in how much data the final fit sees and, for 'pool', in whether the test estimate is still untouched by selection"
+      ],
+      "inputs": {
+        "final_fit_scope": "train+validation"
+      }
+    }
+  ]
+}

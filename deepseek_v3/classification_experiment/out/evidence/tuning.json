@@ -1,0 +1,79 @@
+{
+  "metric": "f1_macro",
+  "protocol": "5-fold cross-validation over the 31,109 pool rows, scored on f1_macro",
+  "final_fit_scope": "train+validation",
+  "final_fit_rows": 31109,
+  "models": {
+    "gradient_boosting": {
+      "family": "gradient_boosting",
+      "best_params": {
+        "clf__n_estimators": 200,
+        "clf__learning_rate": 0.05,
+        "clf__max_depth": 5
+      },
+      "grid": {
+        "n_estimators": [
+          200,
+          300
+        ],
+        "learning_rate": [
+          0.1,
+          0.05
+        ],
+        "max_depth": [
+          3,
+          5
+        ]
+      },
+      "best_score": 0.7680436745960653,
+      "n_combinations": 8,
+      "scores": {
+        "clf__n_estimators=200|clf__learning_rate=0.1|clf__max_depth=3": 0.766171,
+        "clf__n_estimators=200|clf__learning_rate=0.1|clf__max_depth=5": 0.765589,
+        "clf__n_estimators=200|clf__learning_rate=0.05|clf__max_depth=3": 0.760385,
+        "clf__n_estimators=200|clf__learning_rate=0.05|clf__max_depth=5": 0.768044,
+        "clf__n_estimators=300|clf__learning_rate=0.1|clf__max_depth=3": 0.767383,
+        "clf__n_estimators=300|clf__learning_rate=0.1|clf__max_depth=5": 0.761898,
+        "clf__n_estimators=300|clf__learning_rate=0.05|clf__max_depth=3": 0.763892,
+        "clf__n_estimators=300|clf__learning_rate=0.05|clf__max_depth=5": 0.767671
+      },
+      "metric": "f1_macro",
+      "scale": false
+    },
+    "logistic_regression": {
+      "family": "logistic_regression",
+      "best_params": {
+        "clf__C": 10,
+        "clf__penalty": "l2",
+        "clf__solver": "lbfgs"
+      },
+      "grid": {
+        "C": [
+          0.1,
+          1,
+          10
+        ],
+        "penalty": [
+          "l2"
+        ],
+        "solver": [
+          "lbfgs"
+        ]
+      },
+      "best_score": 0.7610292423498786,
+      "n_combinations": 3,
+      "scores": {
+        "clf__C=0.1|clf__penalty='l2'|clf__solver='lbfgs'": 0.758514,
+        "clf__C=1|clf__penalty='l2'|clf__solver='lbfgs'": 0.760583,
+        "clf__C=10|clf__penalty='l2'|clf__solver='lbfgs'": 0.761029
+      },
+      "metric": "f1_macro",
+      "scale": true
+    }
+  },
+  "_evidence": {
+    "type": "tuning",
+    "schema_version": 1,
+    "producer": "driver"
+  }
+}
